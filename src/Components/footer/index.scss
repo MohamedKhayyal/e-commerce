@@ -1,0 +1,49 @@
+.fotter-container {
+  position: relative;
+  bottom: -17px;
+  background-color: #000000;
+  color: white;
+}
+.fotter {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 70px 20px 70px;
+}
+
+.fotter .exclucive h4 {
+  font-size: 24px;
+  font-weight: 700;
+}
+.fotter .exclucive .send {
+  position: relative;
+}
+.fotter .exclucive input {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #000000;
+  border: 1px solid #ddd;
+  padding: 5px;
+  color: #ddd;
+}
+.fotter .exclucive span {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  cursor: pointer;
+}
+.fotter .google-icon {
+  display: flex;
+  gap: 10px;
+}
+.fotter .google-icon img {
+  width: 100px;
+  height: 80px;
+  border-radius: 3px;
+}
+.botton-foot {
+  text-align: center;
+  opacity: 50%;
+  font-size: 14px;
+  padding: 10px;
+}
