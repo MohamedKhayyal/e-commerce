@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
 export default function Header() {
   const { cart } = useContext(cartContext);
-  const { hart } = useContext(cartContext);
+  const { wishlist } = useContext(cartContext);
   return (
     <div className="container">
       <nav>
@@ -39,10 +39,9 @@ export default function Header() {
               <FontAwesomeIcon icon={faHeart} style={{ fontSize: "15px" }} />
             </Link>
             <p style={{ position: "absolute", left: "10px" }} className="ch">
-              {hart.length}
+              {wishlist.length}
             </p>
           </div>
-
           <div className="incr d-flex align-items-center">
             <Link to="/cart">
               <FontAwesomeIcon
