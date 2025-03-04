@@ -1,6 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import img1 from "./assat/a1c7dc5b68a42239311e510f54d8cd59.jpeg";
-import "./index.scss";
 import { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
