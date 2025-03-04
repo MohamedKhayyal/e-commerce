@@ -8,7 +8,7 @@ export default function SignWithGoogle() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then(async (res) => {
       if (res.user) {
-        nanigate("/");
+        nanigate("/home");
       }
     });
   }
@@ -23,7 +23,6 @@ export default function SignWithGoogle() {
         }}
         onClick={googleLogin}
       >
-        {" "}
         <img src={img} width={"100%"} style={{ width: "30px" }} />
         <span className="p-4">Sign up with Google</span>
       </button>

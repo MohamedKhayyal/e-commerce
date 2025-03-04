@@ -9,7 +9,10 @@ import img2 from "./7e210f637fc0504b7d93cd207df744c2.png";
 export default function Product1() {
   const { dispatch } = useContext(cartContext);
   const [product1, setProduct1] = useState([]);
-
+  const [stat, setStat] = useState({});
+  const changeBG = (i) => {
+    setStat((prev) => ({ ...prev, [i]: !prev[i] }));
+  };
   useEffect(() => {
     axios.get("https://fakestoreapi.com/products").then((res) => {
       setProduct1(res.data.slice(8, 12));
@@ -18,20 +21,31 @@ export default function Product1() {
   return (
     <div className="this-month">
       <p className="aftr">This Month</p>
-      <div className="timer d-flex align-items-center justify-content-between">
+      <div className="timer d-flex  justify-content-between">
         <h1>Best Selling Products</h1>
-        <p className="view">View All</p>
+        <Link to={"/shop"} className="view">
+          View All
+        </Link>
       </div>
       <div
         className="month-product d-flex align-items-center flex-wrap"
         style={{ paddingBottom: "50px" }}
       >
-        {product1.map((e) => (
+        {product1.map((e, index) => (
           <div className="box" key={e.id} style={{ height: "450px" }}>
             <div className="box-image">
               <img src={e.image} className="object-fit-contain p-2" />
               <div className="box-icon">
-                <FontAwesomeIcon icon={faHeart} className="icon" />
+                <button
+                  className={` ${stat[index] ? "red" : "text-dark"}`}
+                  onClick={() => dispatch({ type: "Add_Hart", product: e })}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className="icon"
+                    onClick={() => changeBG(index)}
+                  />
+                </button>
               </div>
             </div>
             <div className="box-body">

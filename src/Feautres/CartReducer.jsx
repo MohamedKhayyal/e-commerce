@@ -11,6 +11,17 @@ export const CartReducer = (state, action) => {
             )
           : [...state.cart, { ...action.product, quantity: 1 }],
       };
+    case "Add_Hart":
+      return {
+        ...state,
+        hart: state.hart.some((item) => item.id === action.product.id)
+          ? state.hart.map((item) =>
+              item.id === action.product.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            )
+          : [...state.hart, { ...action.product, quantity: 1 }],
+      };
     case "INCREASE_QUANTITY":
       return {
         ...state,

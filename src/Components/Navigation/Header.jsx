@@ -10,13 +10,14 @@ import { useContext } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
 export default function Header() {
   const { cart } = useContext(cartContext);
+  const { hart } = useContext(cartContext);
   return (
     <div className="container">
       <nav>
-        <Link to={"/"}>Exclusive</Link>
+        <Link to={"/home"}>Exclusive</Link>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/home">Home</NavLink>
           </li>
           <li>
             <NavLink to="/contact">Contact</NavLink>
@@ -33,9 +34,15 @@ export default function Header() {
           <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
         </div>
         <div className="shop-icons">
-          <Link>
-            <FontAwesomeIcon icon={faHeart} style={{ fontSize: "15px" }} />
-          </Link>
+          <div className="incr d-flex align-items-center">
+            <Link to={"/wishlist"}>
+              <FontAwesomeIcon icon={faHeart} style={{ fontSize: "15px" }} />
+            </Link>
+            <p style={{ position: "absolute", left: "10px" }} className="ch">
+              {hart.length}
+            </p>
+          </div>
+
           <div className="incr d-flex align-items-center">
             <Link to="/cart">
               <FontAwesomeIcon

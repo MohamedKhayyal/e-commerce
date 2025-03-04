@@ -1,13 +1,17 @@
 import "./index.scss";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { cartContext } from "../../Feautres/ContextProvider";
 export default function Product2() {
   const { dispatch } = useContext(cartContext);
   const [product2, setProduct2] = useState([]);
+  const [stat, setStat] = useState({});
+  const changeBG = (i) => {
+    setStat((prev) => ({ ...prev, [i]: !prev[i] }));
+  };
   useEffect(() => {
     axios.get("https://fakestoreapi.com/products").then((res) => {
       setProduct2(res.data.slice(12, 20));
@@ -23,12 +27,21 @@ export default function Product2() {
         className="month-product d-flex align-items-center flex-wrap"
         style={{ paddingBottom: "50px" }}
       >
-        {product2.map((e) => (
+        {product2.map((e, index) => (
           <div className="box" key={e.id} style={{ height: "450px" }}>
             <div className="box-image">
               <img src={e.image} className="object-fit-contain p-2" />
               <div className="box-icon">
-                <FontAwesomeIcon icon={faHeart} className="icon" />
+                <button
+                  className={` ${stat[index] ? "red" : "text-dark"}`}
+                  onClick={() => dispatch({ type: "Add_Hart", product: e })}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className="icon"
+                    onClick={() => changeBG(index)}
+                  />
+                </button>
               </div>
             </div>
             <div className="box-body">
@@ -47,7 +60,9 @@ export default function Product2() {
           </div>
         ))}
       </div>
-      <Link className="view-product">View All Products</Link>
+      <Link to={"/shop"} className="view-product">
+        View All Products
+      </Link>
     </div>
   );
 }

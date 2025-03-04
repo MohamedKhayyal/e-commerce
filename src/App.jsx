@@ -7,16 +7,21 @@ import Home from "./pages/home/Home";
 import Header from "./Components/Navigation/Header";
 import Fotter from "./Components/footer/Fotter";
 import Cart from "./pages/cart/Cart";
+import Shop from "./pages/shop/Shop";
+import Wishlist from "./pages/Wishlist/Wishlist";
 export default function App() {
   return (
     <div>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Signin />} path="sign" />
-          <Route element={<Login />} path="login" />
-          <Route path="/cart" element={<Cart />} />
+          <Route index element={<Home />} />
+          <Route path="home" element={<Home />} />
+          <Route path="sign" element={<Signin />} />
+          <Route path="login" element={<Login />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="wishlist" element={<Wishlist />} />
         </Routes>
         <ToastContainer />
         <Fotter />

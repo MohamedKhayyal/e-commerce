@@ -15,7 +15,10 @@ export default function Product() {
   const { dispatch } = useContext(cartContext);
   const [product, setProduct] = useState([]);
   const [setSwiperRef] = useState(null);
-  const [setSlides] = useState(Array.from({ length: 7 }));
+  const [stat, setStat] = useState({});
+  const changeBG = (i) => {
+    setStat((prev) => ({ ...prev, [i]: !prev[i] }));
+  };
   useEffect(() => {
     axios.get("https://fakestoreapi.com/products").then((res) => {
       setProduct(res.data.slice(0, 7));
@@ -51,7 +54,16 @@ export default function Product() {
                 <div className="box-image">
                   <img src={e.image} className="object-fit-contain p-2" />
                   <div className="box-icon">
-                    <FontAwesomeIcon icon={faHeart} className="icon" />
+                    <button
+                      className={` ${stat[index] ? "red" : "text-dark"}`}
+                      onClick={() => dispatch({ type: "Add_Hart", product: e })}
+                    >
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon"
+                        onClick={() => changeBG(index)}
+                      />
+                    </button>
                   </div>
                 </div>
                 <div className="box-body">
@@ -71,7 +83,9 @@ export default function Product() {
             </SwiperSlide>
           ))}
         </Swiper>
-        <Link className="view-product">View All Products</Link>
+        <Link to={"/shop"} className="view-product">
+          View All Products
+        </Link>
       </div>
     </div>
   );

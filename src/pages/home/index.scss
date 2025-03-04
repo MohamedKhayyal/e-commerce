@@ -40,7 +40,6 @@
   text-align: center;
   font-size: 18px;
   background: #000000;
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,35 +57,24 @@
 }
 .slider-inner .text-slider {
   color: white;
-  position: relative;
+  h1 {
+    margin-bottom: 30px;
+  }
   a {
-    margin-top: 30px;
     text-decoration: none;
     padding: 16px 48px;
     color: white;
     border-radius: 5px;
     background-color: #00ff66;
     transition: 0.3s;
+    span {
+      font-size: 20px;
+      margin-left: 30px;
+    }
     &:hover {
       background-color: #2dff81;
     }
   }
-}
-.slider-inner .text-slider p {
-  font-size: 16px;
-}
-.slider-inner .text-slider p span {
-  margin-left: 40px;
-  font-size: 20px;
-}
-.slider-inner .text-slider p:nth-last-child(1)::after {
-  content: "";
-  position: absolute;
-  bottom: 13px;
-  height: 1px;
-  right: 44%;
-  width: 100px;
-  background-color: white;
 }
 .slider-inner .text-slider h1 {
   font-size: 48px;
@@ -174,6 +162,12 @@
   right: 6px;
   font-size: 18px;
 }
+.box .box-image button {
+  border: none;
+}
+.red {
+  color: #f53636;
+}
 .box .box-image img {
   width: 14rem;
   height: 14rem;
@@ -194,7 +188,7 @@
   font-size: 16px;
   color: #000000;
 }
-.box a {
+.box .link a {
   text-decoration: none;
   color: white;
   background-color: #000000;
@@ -258,11 +252,12 @@
   cursor: pointer;
 }
 .home-container .this-month .timer .view {
+  margin-bottom: 15px;
+  text-decoration: none;
   background-color: #db4444;
   color: white;
   padding: 16px 48px;
   border-radius: 5px;
-  cursor: pointer;
   transition: 0.3s;
   &:hover {
     background-color: #f53636;

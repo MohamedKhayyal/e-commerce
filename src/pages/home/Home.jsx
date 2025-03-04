@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowRight,
   faMobileScreen,
   faGamepad,
   faDesktop,
@@ -12,12 +11,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import "./index.scss";
-import React, { useState } from "react";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import img1 from "./7215f42e5883a64157f0aa3a4d1a866a.jpeg";
+import { useState } from "react";
 import img3 from "./0c1817d3afa266b3c9f8c81ff0ed4428.png";
 import img4 from "./08463f7e8f57dd3048a2444dbfa0cb90.jpeg";
 import img5 from "./2977438364a41d7e8c9d1e9a794d43ed.png";
@@ -25,6 +19,7 @@ import img6 from "./5102562cf220504d288fa568eaa816dd.png";
 import Product from "./Product";
 import Product1 from "./Product1";
 import Product2 from "./Product2";
+import Slider from "./Slider";
 export default function Home() {
   const [selectId, setSelectId] = useState(null);
   const changeBackground = (id) => {
@@ -49,92 +44,7 @@ export default function Home() {
             <Link>Groceries & Pets</Link>
             <Link>Health & Beauty</Link>
           </div>
-          <div className="slider">
-            <Swiper
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Pagination]}
-              className="mySwiper"
-            >
-              <SwiperSlide>
-                <div className="slider-inner">
-                  <div className="text-slider">
-                    <p>iPhone 14 Series</p>
-                    <h1>Up to 10% off Voucher</h1>
-                    <p style={{ cursor: "pointer" }}>
-                      Shop Now
-                      <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                      </span>
-                    </p>
-                  </div>
-                  <img src={img1} alt="Slider Image" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="slider-inner">
-                  <div className="text-slider">
-                    <p>iPhone 14 Series</p>
-                    <h1>Up to 10% off Voucher</h1>
-                    <p style={{ cursor: "pointer" }}>
-                      Shop Now
-                      <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                      </span>
-                    </p>
-                  </div>
-                  <img src={img1} alt="Slider Image" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="slider-inner">
-                  <div className="text-slider">
-                    <p>iPhone 14 Series</p>
-                    <h1>Up to 10% off Voucher</h1>
-                    <p style={{ cursor: "pointer" }}>
-                      Shop Now
-                      <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                      </span>
-                    </p>
-                  </div>
-                  <img src={img1} alt="Slider Image" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="slider-inner">
-                  <div className="text-slider">
-                    <p>iPhone 14 Series</p>
-                    <h1>Up to 10% off Voucher</h1>
-                    <p style={{ cursor: "pointer" }}>
-                      Shop Now
-                      <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                      </span>
-                    </p>
-                  </div>
-                  <img src={img1} alt="Slider Image" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="slider-inner">
-                  <div className="text-slider">
-                    <p>iPhone 14 Series</p>
-                    <h1>Up to 10% off Voucher</h1>
-                    <p style={{ cursor: "pointer" }}>
-                      Shop Now
-                      <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                      </span>
-                    </p>
-                  </div>
-                  <img src={img1} alt="Slider Image" />
-                </div>
-              </SwiperSlide>
-            </Swiper>
-          </div>
+          <Slider />
         </div>
         <Product />
         <div className="Categories">
@@ -227,7 +137,7 @@ export default function Home() {
               <div className="img3-text text-white">
                 <h3>PlayStation 5</h3>
                 <p>Black and White version of the PS5 coming out on sale.</p>
-                <Link>Shop Now</Link>
+                <Link to={"/shop"}>Shop Now</Link>
               </div>
             </div>
             <div
@@ -245,7 +155,7 @@ export default function Home() {
                 <div className="img3-text text-white">
                   <h3>Women’s Collections</h3>
                   <p>Featured woman collections that give you another vibe.</p>
-                  <Link>Shop Now</Link>
+                  <Link to={"/shop"}>Shop Now</Link>
                 </div>
               </div>
               <div
@@ -263,7 +173,7 @@ export default function Home() {
                   <div className="img3-text text-white">
                     <h3>Speakers</h3>
                     <p>Amazon wireless speakers</p>
-                    <Link>Shop Now</Link>
+                    <Link to={"/shop"}>Shop Now</Link>
                   </div>
                 </div>
                 <div className="img-6">
@@ -277,7 +187,7 @@ export default function Home() {
                   <div className="img3-text text-white">
                     <h3>Perfume</h3>
                     <p>GUCCI INTENSE OUD EDP</p>
-                    <Link>Shop Now</Link>
+                    <Link to={"/shop"}>Shop Now</Link>
                   </div>
                 </div>
               </div>
@@ -290,7 +200,6 @@ export default function Home() {
             <div className="delevery-icon">
               <div className="i">
                 <div className="icon-icon">
-                  {" "}
                   <FontAwesomeIcon icon={faTruck} className="icon" />
                 </div>
               </div>
