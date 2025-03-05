@@ -1,12 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUp,
+  faArrowDown,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import "./index.scss";
 import { cartContext } from "../../Feautres/ContextProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { cart, dispatch } = useContext(cartContext);
+  const navigate = useNavigate();
   const subtotal = cart
     .filter((product) => product.price)
     .reduce(
@@ -20,6 +25,13 @@ export default function Cart() {
   };
   const decrease = (id) => {
     dispatch({ type: "DECREASE_QUANTITY", payload: id });
+  };
+  const chLocation = () => {
+    if (cart.length === 0) {
+      navigate("/home");
+    } else {
+      navigate("/checkout");
+    }
   };
   return (
     <div className="cart-container">
@@ -35,41 +47,45 @@ export default function Cart() {
           <p>Subtotal</p>
         </div>
         {cart.length > 0 ? (
-          cart.map((product) => (
+          cart.map((e) => (
             <div
-              key={product.id}
+              key={e.id}
               className="head-detail d-flex align-items-center justify-content-between shadow p-3 mb-5 bg-body-tertiary rounded"
             >
-              <img src={product.image} alt="Product" width={50} />
+              <div className="delete-cart">
+                <img src={e.image} alt="Product" width={50} />
+                <button
+                  onClick={() =>
+                    dispatch({ type: "RemoveFromCart", product: e })
+                  }
+                >
+                  <FontAwesomeIcon icon={faXmark} />
+                </button>
+              </div>
               <p>
-                {product.title.length > 12
-                  ? product.title.slice(0, 12) + "..."
-                  : product.title}
+                {e.title.length > 12 ? e.title.slice(0, 12) + "..." : e.title}
               </p>
-              <p>${product.price ? product.price.toFixed(2) : "0.00"}</p>
+              <p>${e.price ? e.price.toFixed(2) : "0.00"}</p>
               <div className="qty">
-                <span>{product.quantity || 1}</span>
+                <span>{e.quantity || 1}</span>
 
                 <div className="inc-dec d-flex flex-column align-items-center justify-content-between">
                   <span
                     style={{ cursor: "pointer" }}
-                    onClick={() => increase(product.id)}
+                    onClick={() => increase(e.id)}
                   >
                     <FontAwesomeIcon icon={faArrowUp} />
                   </span>
                   <span
                     style={{ cursor: "pointer" }}
-                    onClick={() => decrease(product.id)}
+                    onClick={() => decrease(e.id)}
                   >
                     <FontAwesomeIcon icon={faArrowDown} />
                   </span>
                 </div>
               </div>
               <p>
-                $
-                {product.price
-                  ? ((product.quantity || 1) * product.price).toFixed(2)
-                  : "0.00"}
+                ${e.price ? ((e.quantity || 1) * e.price).toFixed(2) : "0.00"}
               </p>
             </div>
           ))
@@ -108,7 +124,7 @@ export default function Cart() {
             <p>${subtotal}</p>
           </div>
           <div className="buy-link">
-            <Link to="/checkout">Proceed to Checkout</Link>
+            <button onClick={chLocation}>Proceed to Checkout</button>
           </div>
         </div>
       </div>

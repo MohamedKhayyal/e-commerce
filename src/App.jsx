@@ -9,6 +9,7 @@ import Fotter from "./Components/footer/Fotter";
 import Cart from "./pages/cart/Cart";
 import Shop from "./pages/shop/Shop";
 import Wishlist from "./pages/Wishlist/Wishlist";
+import Checkout from "./pages/checkOut/Checkout";
 export default function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="shop" element={<Shop />} />
           <Route path="wishlist" element={<Wishlist />} />
+          <Route path="checkout" element={<Checkout />} />
         </Routes>
         <ToastContainer />
         <Fotter />

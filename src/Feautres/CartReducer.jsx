@@ -18,13 +18,21 @@ export const CartReducer = (state, action) => {
         ...state,
         wishlist: state.wishlist.some((item) => item.id === action.product.id)
           ? state.wishlist
-          : [...state.wishlist, action.product], // No quantity needed
+          : [...state.wishlist, action.product],
       };
 
     case "RemoveFromWishlist":
       return {
         ...state,
-        wishlist: state.wishlist.filter((item) => item.id !== action.product.id),
+        wishlist: state.wishlist.filter(
+          (item) => item.id !== action.product.id
+        ),
+      };
+
+    case "RemoveFromCart":
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.product.id),
       };
 
     case "INCREASE_QUANTITY":

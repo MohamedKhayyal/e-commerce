@@ -49,7 +49,7 @@
 .checkout p {
   padding: 8px;
 }
-.checkout a {
+.checkout a,.buy-link button {
   padding: 16px 48px;
   color: white;
   border-radius: 5px;
@@ -61,4 +61,16 @@
 .checkout .shipping,
 .checkout .sub {
   border-bottom: 1px solid #ddd;
+}
+.delete-cart {
+  position: relative;
+}
+.delete-cart button {
+  background-color: rgba(var(--bs-tertiary-bg-rgb));
+  border: none;
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  color: #db4444;
+  font-size: 15px;
 }

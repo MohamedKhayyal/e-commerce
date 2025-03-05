@@ -1,0 +1,84 @@
+.details .inputs {
+  gap: 15px;
+}
+.details label {
+  opacity: 40%;
+  font-size: 16px;
+}
+.inputs .inp {
+  outline: none;
+  border: none;
+  background-color: #f5f5f5;
+  padding: 7px 50px 7px 20px;
+  border-radius: 5px;
+  width: 470px;
+}
+.details .check-Box {
+  gap: 10px;
+}
+.details .cart-datas .head-details {
+  gap: 130px;
+  .body-details {
+    gap: 30px;
+  }
+}
+.details .checkout {
+  width: 470px;
+  height: auto;
+  border-radius: 5px;
+  padding: 20px;
+}
+.details .radios {
+  padding: 30px 0 30px 0;
+  align-items: start;
+  gap: 10px;
+  .input1,
+  .input2 {
+    gap: 30px;
+  }
+  .label {
+    opacity: 100%;
+  }
+}
+.placeOrder {
+  margin-top: 30px;
+  padding: 16px 48px;
+  color: white;
+  border-radius: 5px;
+  background-color: #db4444;
+  margin-left: 30px;
+}
+
+  .custom-checkbox {
+    display: none; /* Hide default checkbox */
+  }
+
+  .custom-checkbox + label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .custom-checkbox + label::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid red;
+    border-radius: 3px;
+    margin-right: 10px;
+    display: inline-block;
+    background-color: white;
+  }
+
+  .custom-checkbox:checked + label::before {
+    background-color: red;
+    content: "✔";
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 18px;
+  }
+
+
+
