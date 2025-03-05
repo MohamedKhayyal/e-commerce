@@ -1,0 +1,27 @@
+.not-found {
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  h1 {
+    font-size: 110px;
+    font-weight: 500;
+    color: #000000;
+  }
+  p {
+    font-size: 16px;
+    color: #000000;
+  }
+}
+.cart-container .go-home {
+  text-align: center;
+  padding-top: 30px;
+  a {
+    padding: 16px 48px;
+    color: white;
+    border-radius: 5px;
+    background-color: #db4444;
+    margin-left: 30px;
+  }
+}

@@ -10,6 +10,7 @@ import Cart from "./pages/cart/Cart";
 import Shop from "./pages/shop/Shop";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Checkout from "./pages/checkOut/Checkout";
+import Notfound from "./pages/notFound/Notfound";
 export default function App() {
   return (
     <div>
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="shop" element={<Shop />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="*" element={<Notfound />} />
         </Routes>
         <ToastContainer />
         <Fotter />

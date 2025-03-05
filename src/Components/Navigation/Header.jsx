@@ -1,13 +1,10 @@
 import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faHeart,
-  faCartShopping,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
+import Search from "./Search";
 export default function Header() {
   const { cart } = useContext(cartContext);
   const { wishlist } = useContext(cartContext);
@@ -17,22 +14,27 @@ export default function Header() {
         <Link to={"/home"}>Exclusive</Link>
         <ul>
           <li>
-            <NavLink to="/home">Home</NavLink>
+            <NavLink className={"link"} to="/home">
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink className={"link"} to="/contact">
+              Contact
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/about">About</NavLink>
+            <NavLink className={"link"} to="/about">
+              About
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/sign">Sign Up</NavLink>
+            <NavLink className={"link"} to="/sign">
+              Sign Up
+            </NavLink>
           </li>
         </ul>
-        <div className="search">
-          <input type="text" placeholder="What Are You Looking For" />
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
-        </div>
+        <Search />
         <div className="shop-icons">
           <div className="incr d-flex align-items-center">
             <Link to={"/wishlist"}>

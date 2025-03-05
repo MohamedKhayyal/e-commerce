@@ -48,37 +48,30 @@
   background-color: #db4444;
   margin-left: 30px;
 }
-
-  .custom-checkbox {
-    display: none; /* Hide default checkbox */
-  }
-
-  .custom-checkbox + label {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  .custom-checkbox + label::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    border: 2px solid red;
-    border-radius: 3px;
-    margin-right: 10px;
-    display: inline-block;
-    background-color: white;
-  }
-
-  .custom-checkbox:checked + label::before {
-    background-color: red;
-    content: "✔";
-    color: white;
-    font-size: 14px;
-    text-align: center;
-    line-height: 18px;
-  }
-
-
-
+.custom-checkbox {
+  display: none;
+}
+.custom-checkbox + label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+.custom-checkbox + label::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  border-radius: 3px;
+  margin-right: 10px;
+  display: inline-block;
+  background-color: white;
+}
+.custom-checkbox:checked + label::before {
+  background-color: red;
+  content: "✔";
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  line-height: 18px;
+}
