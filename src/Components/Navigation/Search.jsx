@@ -53,7 +53,6 @@ export default function Search() {
                 <div className="flex-search">
                   <img
                     src={product.image}
-                    width={50}
                     alt={product.title}
                     className="product-img"
                   />

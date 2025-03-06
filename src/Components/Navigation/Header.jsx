@@ -1,10 +1,15 @@
 import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faCartShopping,
+  faCircleUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
 import Search from "./Search";
+import User from "./User";
 export default function Header() {
   const { cart } = useContext(cartContext);
   const { wishlist } = useContext(cartContext);
@@ -55,6 +60,17 @@ export default function Header() {
               {cart.length}
             </p>
           </div>
+          <User />
+          {/* <div className="menue d-flex flex-column">
+            <button style={{ fontSize: "20px", background: "white" }}>
+              <FontAwesomeIcon icon={faCircleUser} />
+            </button>
+            <div className="menue-menue">
+              <div className="mange">mange my account</div>
+              <div className="mange">mange my account</div>
+              <div className="mange">mange my account</div>
+            </div>
+          </div> */}
         </div>
       </nav>
     </div>

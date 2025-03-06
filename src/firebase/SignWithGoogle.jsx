@@ -8,6 +8,7 @@ export default function SignWithGoogle() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then(async (res) => {
       if (res.user) {
+        localStorage.setItem("userEmail", res.user.email);
         nanigate("/home");
       }
     });

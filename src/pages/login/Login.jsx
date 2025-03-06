@@ -11,6 +11,7 @@ export default function Login() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("userEmail", email);
       navigate("/home");
     } catch (error) {
       toast.error(error.message, {
