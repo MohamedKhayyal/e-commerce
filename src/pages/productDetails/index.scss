@@ -1,0 +1,21 @@
+.details-container {
+  padding: 70px;
+  justify-content: space-between;
+  h3{
+    font-size: 24px;
+  }
+}
+.details-container .products-image {
+  width: 500px;
+  height: 600px;
+  background-color: rgba(245, 245, 245, 1);
+  position: relative;
+  border-radius: 6px;
+  img {
+    width: 446px;
+    height: 315px;
+    position: absolute;
+    top: 145px;
+    left: 27px;
+  }
+}

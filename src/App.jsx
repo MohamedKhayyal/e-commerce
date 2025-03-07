@@ -11,6 +11,7 @@ import Shop from "./pages/shop/Shop";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Checkout from "./pages/checkOut/Checkout";
 import Notfound from "./pages/notFound/Notfound";
+import ProductDetails from "./pages/productDetails/ProductDetails";
 export default function App() {
   return (
     <div>
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
           <Route path="shop" element={<Shop />} />
+          <Route path="product-details/:id" element={<ProductDetails />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="*" element={<Notfound />} />

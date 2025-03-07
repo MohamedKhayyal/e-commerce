@@ -25,7 +25,9 @@ export default function Shop() {
       {product.map((e, index) => (
         <div className="box" key={e.id} style={{ height: "450px" }}>
           <div className="box-image">
-            <img src={e.image} className="object-fit-contain p-2" />
+            <Link to={`/product-details/${e.id}`}>
+              <img src={e.image} className="object-fit-contain p-2" />
+            </Link>
             <div className="box-icon">
               <button
                 className={` ${stat[index] ? "red" : "text-dark"}`}
