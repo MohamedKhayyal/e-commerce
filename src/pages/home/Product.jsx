@@ -22,6 +22,7 @@ export default function Product() {
   useEffect(() => {
     axios.get("https://fakestoreapi.com/products").then((res) => {
       setProduct(res.data.slice(0, 7));
+      console.log(res.data);
     });
   }, []);
   return (
@@ -79,6 +80,9 @@ export default function Product() {
                   </div>
                   <div className="price">
                     <p>{e.price}$</p>
+                    <div className="rate">
+                    <p>⭐⭐⭐⭐⭐ <span>({e.rating .count})</span></p>
+                  </div>
                   </div>
                 </div>
               </div>

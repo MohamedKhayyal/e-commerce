@@ -4,6 +4,11 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function ProductDetails() {
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectId, setSelectId] = useState(null);
+  const changeBackground = (id) => {
+    setSelectId(id);
+  };
   const [product, setProducts] = useState({});
   let parm = useParams();
   useEffect(() => {
@@ -18,7 +23,73 @@ export default function ProductDetails() {
           <img src={product.image} className="object-fit-contain p-2" />
         </div>
         <div className="product-details">
-        <h3>{product?.title ? product.title.slice(0, 50) + (product.title.length > 10 ? "..." : "") : ""}</h3>
+          <h3>
+            {product?.title
+              ? product.title.slice(0, 50) +
+                (product.title.length > 10 ? "..." : "")
+              : ""}
+          </h3>
+          <div className="rate d-flex align-items-center justify-content-between">
+            <p>⭐⭐⭐⭐⭐</p>
+            {/* <span>({product.rating.count} Reviews)</span> */}
+            <p className="shok">In Stock</p>
+          </div>
+          <div className="product-price">
+            <h3>${product.price}</h3>
+          </div>
+          <p className="desc">{product.description}</p>
+          <div className="change-colors d-flex align-items-center gap-2 mb-3">
+            <div className="colors" style={{ color: selectedColor }}>
+              Colours:
+            </div>
+            <input
+              type="radio"
+              name="color"
+              id="option 1"
+              className="radio green"
+              onChange={() => setSelectedColor("green")}
+            />
+            <input
+              type="radio"
+              name="color"
+              id="option 2"
+              className="radio red"
+              onChange={() => setSelectedColor("red")}
+            />
+          </div>
+          <div className="product-size d-flex  gap-3 mb-3">
+            <div className="colors">Size:</div>
+            <p
+              className={`${selectId == 1 ? "bg-red" : ""}`}
+              onClick={() => changeBackground(1)}
+            >
+              XS
+            </p>
+            <p
+              className={`${selectId == 2 ? "bg-red" : ""}`}
+              onClick={() => changeBackground(2)}
+            >
+              S
+            </p>
+            <p
+              className={`${selectId == 3 ? "bg-red" : ""}`}
+              onClick={() => changeBackground(3)}
+            >
+              M
+            </p>
+            <p
+              className={`${selectId == 4 ? "bg-red" : ""}`}
+              onClick={() => changeBackground(4)}
+            >
+              L
+            </p>
+            <p
+              className={`${selectId == 5 ? "bg-red" : ""}`}
+              onClick={() => changeBackground(5)}
+            >
+              XL
+            </p>
+          </div>
         </div>
       </div>
     </div>

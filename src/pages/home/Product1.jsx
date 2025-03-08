@@ -34,9 +34,9 @@ export default function Product1() {
         {product1.map((e, index) => (
           <div className="box" key={e.id} style={{ height: "450px" }}>
             <div className="box-image">
-            <Link to={`/product-details/${e.id}`}>
-              <img src={e.image} className="object-fit-contain p-2" />
-            </Link>
+              <Link to={`/product-details/${e.id}`}>
+                <img src={e.image} className="object-fit-contain p-2" />
+              </Link>
               <div className="box-icon">
                 <button
                   className={` ${stat[index] ? "red" : "text-dark"}`}
@@ -61,6 +61,11 @@ export default function Product1() {
               </div>
               <div className="price">
                 <p>{e.price}$</p>
+                <div className="rate">
+                  <p>
+                    ⭐⭐⭐⭐⭐ <span>({e.rating.count})</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -73,7 +78,7 @@ export default function Product1() {
             <h1 style={{ marginBottom: "50px" }}>
               Enhance Your Music Experience
             </h1>
-            <Link>Buy Now</Link>
+            <Link to={"/shop"}>Buy Now</Link>
           </div>
           <img src={img2} alt="Slider Image" style={{ height: "330px" }} />
         </div>
