@@ -62,9 +62,9 @@ export default function Product1() {
               <div className="price">
                 <p>{e.price}$</p>
                 <div className="rate">
-                  <p>
-                    ⭐⭐⭐⭐⭐ <span>({e.rating.count})</span>
-                  </p>
+                <p className="text-dark">
+                {e.rating.rate}⭐ <span>({e.rating.count})</span>
+                </p>
                 </div>
               </div>
             </div>

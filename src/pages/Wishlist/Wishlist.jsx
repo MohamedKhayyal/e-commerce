@@ -20,11 +20,9 @@ export default function Wishlist() {
           wishlist.map((e) => (
             <div className="box" key={e.id} style={{ height: "450px" }}>
               <div className="box-image">
-                <img
-                  src={e.image}
-                  alt={e.title}
-                  className="object-fit-contain p-2"
-                />
+                <Link to={`/product-details/${e.id}`}>
+                  <img src={e.image} className="object-fit-contain p-2" />
+                </Link>
                 <div className="box-icon">
                   <button
                     className="hov"

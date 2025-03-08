@@ -53,7 +53,9 @@ export default function Cart() {
               className="head-detail d-flex align-items-center justify-content-between shadow p-3 mb-5 bg-body-tertiary rounded"
             >
               <div className="delete-cart">
-                <img src={e.image} alt="Product" width={50} />
+                <Link to={`/product-details/${e.id}`}>
+                  <img src={e.image} width={50} />
+                </Link>
                 <button
                   onClick={() =>
                     dispatch({ type: "RemoveFromCart", product: e })

@@ -1,21 +1,38 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "./index.scss";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { cartContext } from "../../Feautres/ContextProvider";
 
 export default function ProductDetails() {
+  const { dispatch } = useContext(cartContext);
   const [selectedColor, setSelectedColor] = useState("");
-  const [selectId, setSelectId] = useState(null);
-  const changeBackground = (id) => {
-    setSelectId(id);
-  };
   const [product, setProducts] = useState({});
+  const [inc, setInc] = useState(1);
+  const [stat, setStat] = useState({});
+  const [selectId, setSelectId] = useState(null);
   let parm = useParams();
   useEffect(() => {
     axios.get(`https://fakestoreapi.com/products/${parm.id}`).then((res) => {
       setProducts(res.data);
     });
   }, []);
+  const changeBackground = (id) => {
+    setSelectId(id);
+  };
+  const changeBG = (i) => {
+    setStat((prev) => ({ ...prev, [i]: !prev[i] }));
+  };
+  const Increace = () => {
+    setInc(inc + 1);
+  };
+  const Decreace = () => {
+    if (inc > 1) {
+      setInc(inc - 1);
+    }
+  };
   return (
     <div>
       <div className="details-container d-flex">
@@ -30,8 +47,9 @@ export default function ProductDetails() {
               : ""}
           </h3>
           <div className="rate d-flex align-items-center justify-content-between">
-            <p>⭐⭐⭐⭐⭐</p>
-            {/* <span>({product.rating.count} Reviews)</span> */}
+            <p>
+              {product.rating?.rate}⭐ <span>({product.rating?.count})</span>
+            </p>
             <p className="shok">In Stock</p>
           </div>
           <div className="product-price">
@@ -89,6 +107,33 @@ export default function ProductDetails() {
             >
               XL
             </p>
+          </div>
+          <div className="chec-product d-flex">
+            <div className="qnty d-flex">
+              <button onClick={Decreace}>-</button>
+              <p>{inc}</p>
+              <button className="red" onClick={Increace}>
+                +
+              </button>
+            </div>
+            <Link
+              to={"/cart"}
+              onClick={() => dispatch({ type: "Add", product: product })}
+            >
+              Buy Now
+            </Link>
+            <div className="add-wishlest">
+              <button
+                className={` ${stat[product.id] ? "red" : "text-dark"}`}
+                onClick={() => dispatch({ type: "Add_Hart", product: product })}
+              >
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  className="icon"
+                  onClick={() => changeBG(product.id)}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
