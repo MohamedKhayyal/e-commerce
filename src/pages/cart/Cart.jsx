@@ -28,7 +28,7 @@ export default function Cart() {
   };
   const chLocation = () => {
     if (cart.length === 0) {
-      navigate("/home");
+      navigate("/shop");
     } else {
       navigate("/checkout");
     }

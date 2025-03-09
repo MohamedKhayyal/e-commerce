@@ -51,11 +51,9 @@ export default function Search() {
             filteredProducts.map((product) => (
               <li key={product.id} className="search-item">
                 <div className="flex-search">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="product-img"
-                  />
+                  <Link to={`/product-details/${product.id}`}>
+                    <img src={product.image} className="product-img" />
+                  </Link>
                   <span>
                     {product.title.length > 10
                       ? product.title.substring(0, 10) + "..."

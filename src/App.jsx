@@ -12,6 +12,7 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 import Checkout from "./pages/checkOut/Checkout";
 import Notfound from "./pages/notFound/Notfound";
 import ProductDetails from "./pages/productDetails/ProductDetails";
+import MangeAccount from "./pages/mange account/MangeAccount";
 export default function App() {
   return (
     <div>
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="product-details/:id" element={<ProductDetails />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="mange-account" element={<MangeAccount />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         <ToastContainer />

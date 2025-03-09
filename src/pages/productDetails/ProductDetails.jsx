@@ -13,14 +13,15 @@ export default function ProductDetails() {
   const [inc, setInc] = useState(1);
   const [stat, setStat] = useState({});
   const [selectId, setSelectId] = useState(null);
+  const size = ["XS", "S", "M", "L", "XL"];
   let parm = useParams();
   useEffect(() => {
     axios.get(`https://fakestoreapi.com/products/${parm.id}`).then((res) => {
       setProducts(res.data);
     });
   }, []);
-  const changeBackground = (id) => {
-    setSelectId(id);
+  const changeBackground = (i) => {
+    setSelectId(i);
   };
   const changeBG = (i) => {
     setStat((prev) => ({ ...prev, [i]: !prev[i] }));
@@ -75,36 +76,17 @@ export default function ProductDetails() {
           </div>
           <div className="product-size d-flex  gap-3 mb-3">
             <div className="colors">Size:</div>
-            <p
-              className={`${selectId == 1 ? "bg-red" : ""}`}
-              onClick={() => changeBackground(1)}
-            >
-              XS
-            </p>
-            <p
-              className={`${selectId == 2 ? "bg-red" : ""}`}
-              onClick={() => changeBackground(2)}
-            >
-              S
-            </p>
-            <p
-              className={`${selectId == 3 ? "bg-red" : ""}`}
-              onClick={() => changeBackground(3)}
-            >
-              M
-            </p>
-            <p
-              className={`${selectId == 4 ? "bg-red" : ""}`}
-              onClick={() => changeBackground(4)}
-            >
-              L
-            </p>
-            <p
-              className={`${selectId == 5 ? "bg-red" : ""}`}
-              onClick={() => changeBackground(5)}
-            >
-              XL
-            </p>
+            {size.map((e, i) => {
+              return (
+                <p
+                  key={i}
+                  className={`${selectId == i ? "bg-red" : ""}`}
+                  onClick={() => changeBackground(i)}
+                >
+                  {e}
+                </p>
+              );
+            })}
           </div>
           <div className="chec-product d-flex">
             <div className="qnty d-flex">

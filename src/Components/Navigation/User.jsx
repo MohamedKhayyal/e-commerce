@@ -7,7 +7,7 @@ import {
   faStar,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function User() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -46,8 +46,16 @@ export default function User() {
       <div className={`${open ? "abs" : "d-none"}`}>
         <ul className="py-2 d-flex flex-column user">
           <li className="d-flex align-items-center">
-            <FontAwesomeIcon icon={faCircleUser} style={{ fontSize: "20px" }} />
-            <span>Manage My Account</span>
+            <Link
+              to={"mange-account"}
+              className="d-flex align-items-center"
+            >
+              <FontAwesomeIcon
+                icon={faCircleUser}
+                style={{ fontSize: "20px" }}
+              />
+              <span>Manage My Account</span>
+            </Link>
           </li>
           <li className="d-flex align-items-center">
             <FontAwesomeIcon icon={faBoxOpen} style={{ fontSize: "20px" }} />

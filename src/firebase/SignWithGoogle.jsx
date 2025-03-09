@@ -8,6 +8,13 @@ export default function SignWithGoogle() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then(async (res) => {
       if (res.user) {
+        const fullName = res.user.displayName || "";
+        const nameParts = fullName.split(" "); // Split the name into parts
+        const firstName = fullName.split(" ")[0]; // Get the first name
+        const lastName = nameParts.slice(1).join(" ") || "";
+        localStorage.setItem("userFirstName", firstName); // Store first name
+        localStorage.setItem("userLastName", lastName);
+        localStorage.setItem("userName", res.user.displayName); // Save name
         localStorage.setItem("userEmail", res.user.email);
         nanigate("/home");
       }
