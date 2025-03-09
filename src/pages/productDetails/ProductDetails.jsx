@@ -47,9 +47,7 @@ export default function ProductDetails() {
               : ""}
           </h3>
           <div className="rate d-flex align-items-center justify-content-between">
-            <p>
-              {product.rating?.rate}⭐ <span>({product.rating?.count})</span>
-            </p>
+            <p>{product.rating?.rate || product.rating}⭐</p>
             <p className="shok">In Stock</p>
           </div>
           <div className="product-price">

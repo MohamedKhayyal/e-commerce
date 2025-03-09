@@ -22,7 +22,6 @@ export default function Product() {
   useEffect(() => {
     axios.get("https://fakestoreapi.com/products").then((res) => {
       setProduct(res.data.slice(0, 7));
-      console.log(res.data);
     });
   }, []);
   return (
