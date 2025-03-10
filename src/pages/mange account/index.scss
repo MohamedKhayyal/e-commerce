@@ -23,20 +23,24 @@
   border-radius: 4px;
   padding: 10px 20px;
 }
-.passwords input{
-    width: 100%;
-    margin-bottom: 10px;
+.passwords input {
+  width: 100%;
+  margin-bottom: 10px;
 }
-.buttons{
-    margin-top: 20px;
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    gap: 30px;
-    .bton{
-        padding: 16px 48px;
-        background-color: #DB4444;
-        color: white;
-        border-radius: 6px;
-    }
+.buttons {
+  margin-top: 20px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  .bton {
+    padding: 16px 48px;
+    background-color: #db4444;
+    color: white;
+    border-radius: 6px;
+  }
+  a {
+    padding: 16px 48px;
+    color: #000000;
+  }
 }

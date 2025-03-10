@@ -14,7 +14,7 @@ export default function SignWithGoogle() {
         const lastName = nameParts.slice(1).join(" ") || "";
         localStorage.setItem("userFirstName", firstName); // Store first name
         localStorage.setItem("userLastName", lastName);
-        localStorage.setItem("userName", res.user.displayName); // Save name
+        localStorage.setItem("userFullName", res.user.displayName); // Save name
         localStorage.setItem("userEmail", res.user.email);
         nanigate("/home");
       }

@@ -1,10 +1,11 @@
 import React from "react";
 import "./index.scss";
+import { Link } from "react-router-dom";
 export default function MangeAccount() {
-  const storedEmail = localStorage.getItem("userEmail"); //check if user signIn
-  const storedName = localStorage.getItem("userName"); //check if user signIn
-  const firstName = localStorage.getItem("userFirstName"); //check if user signIn
-  const lastName = localStorage.getItem("userLastName"); //check if user signIn
+  const storedEmail = localStorage.getItem("userEmail");
+  const storedName = localStorage.getItem("userFullName");
+  const firstName = localStorage.getItem("userFirstName");
+  const lastName = localStorage.getItem("userLastName");
 
   return (
     <div className="cart-container">
@@ -82,7 +83,9 @@ export default function MangeAccount() {
             <input type="password" placeholder="Confirm New Passwod" />
           </div>
           <div className="buttons">
-            <button className="bg-white">Cancle</button>
+            <Link to={"/home"} className="bg-white">
+              Cancle
+            </Link>
             <button className="bton">Save Changes</button>
           </div>
         </div>

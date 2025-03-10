@@ -22,9 +22,14 @@ import Product2 from "./Product2";
 import Slider from "./Slider";
 export default function Home() {
   const [selectId, setSelectId] = useState(null);
-  const changeBackground = (id) => {
-    setSelectId(id);
-  };
+  const category = [
+    { icone: <FontAwesomeIcon icon={faMobileScreen} />, name: "Phones" },
+    { icone: <FontAwesomeIcon icon={faDesktop} />, name: "Computers" },
+    { icone: <FontAwesomeIcon icon={faStopwatch} />, name: "SmartWatch" },
+    { icone: <FontAwesomeIcon icon={faCamera} />, name: "Camera" },
+    { icone: <FontAwesomeIcon icon={faHeadphones} />, name: "HeadPhones" },
+    { icone: <FontAwesomeIcon icon={faGamepad} />, name: "Gaming" },
+  ];
   return (
     <div className="col-12">
       <div className="home-container">
@@ -53,60 +58,18 @@ export default function Home() {
             <h1>Browse By Category</h1>
           </div>
           <div className="category-items">
-            <div
-              className={`${selectId == 1 ? "bgred" : "browse-items"}`}
-              onClick={() => changeBackground(1)}
-            >
-              <p className="browse-icon">
-                <FontAwesomeIcon icon={faMobileScreen} />
-              </p>
-              <p>Phones</p>
-            </div>
-            <div
-              className={`${selectId == 2 ? "bgred" : "browse-items"}`}
-              onClick={() => changeBackground(2)}
-            >
-              <p className="browse-icon">
-                <FontAwesomeIcon icon={faDesktop} />
-              </p>
-              <p>Computers</p>
-            </div>
-            <div
-              className={`${selectId == 3 ? "bgred" : "browse-items"}`}
-              onClick={() => changeBackground(3)}
-            >
-              <p className="browse-icon">
-                <FontAwesomeIcon icon={faStopwatch} />
-              </p>
-              <p>SmartWatch</p>
-            </div>
-            <div
-              className={`${selectId == 4 ? "bgred" : "browse-items"}`}
-              onClick={() => changeBackground(4)}
-            >
-              <p className="browse-icon">
-                <FontAwesomeIcon icon={faCamera} />
-              </p>
-              <p>Camera</p>
-            </div>
-            <div
-              className={`${selectId == 5 ? "bgred" : "browse-items"}`}
-              onClick={() => changeBackground(5)}
-            >
-              <p className="browse-icon">
-                <FontAwesomeIcon icon={faHeadphones} />
-              </p>
-              <p>HeadPhones</p>
-            </div>
-            <div
-              className={`${selectId == 6 ? "bgred" : "browse-items"}`}
-              onClick={() => changeBackground(6)}
-            >
-              <p className="browse-icon">
-                <FontAwesomeIcon icon={faGamepad} />
-              </p>
-              <p>Gaming</p>
-            </div>
+            {category.map((e, i) => {
+              return (
+                <div
+                  key={i}
+                  className={`${selectId == i ? "bgred" : "browse-items"}`}
+                  onClick={() => setSelectId(i)}
+                >
+                  <p className="browse-icon">{e.icone}</p>
+                  <p>{e.name}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
         <Product1 />

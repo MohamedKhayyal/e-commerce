@@ -13,6 +13,7 @@ import Checkout from "./pages/checkOut/Checkout";
 import Notfound from "./pages/notFound/Notfound";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import MangeAccount from "./pages/mange account/MangeAccount";
+import Contact from "./pages/contact/Contact";
 export default function App() {
   return (
     <div>
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="mange-account" element={<MangeAccount />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         <ToastContainer />

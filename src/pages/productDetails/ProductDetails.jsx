@@ -20,9 +20,6 @@ export default function ProductDetails() {
       setProducts(res.data);
     });
   }, []);
-  const changeBackground = (i) => {
-    setSelectId(i);
-  };
   const changeBG = (i) => {
     setStat((prev) => ({ ...prev, [i]: !prev[i] }));
   };
@@ -81,7 +78,7 @@ export default function ProductDetails() {
                 <p
                   key={i}
                   className={`${selectId == i ? "bg-red" : ""}`}
-                  onClick={() => changeBackground(i)}
+                  onClick={() => setSelectId(i)}
                 >
                   {e}
                 </p>

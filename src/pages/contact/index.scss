@@ -1,0 +1,71 @@
+.contact-field {
+  margin-top: 50px;
+}
+.contact-call {
+  width: 340px;
+  height: 457px;
+  border-radius: 6px;
+  flex-direction: column;
+  padding: 40px;
+  .text {
+    font-size: 14px;
+    width: 101%;
+  }
+}
+.calls,
+.contact-mail {
+  gap: 10px;
+  margin-bottom: 20px;
+
+  .calls-call {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #db4444;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .p {
+    font-size: 16px;
+    height: 30px;
+  }
+}
+.contact-contact {
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+.contact-input {
+  width: 800px;
+  height: 457px;
+  padding: 40px;
+  gap: 50px;
+  .input-name input {
+    width: 235;
+    height: 50px;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+    border: none;
+    padding: 20px;
+  }
+  textarea {
+    background-color: #f5f5f5;
+    border-radius: 6px;
+    border: none;
+    padding: 20px;
+    width: 737px;
+    height: 207px;
+    resize: none;
+  }
+  .button {
+    text-align: right;
+  }
+  button {
+    padding: 16px 48px;
+    border-radius: 6px;
+    background-color: #db4444;
+    color: white;
+  }
+}

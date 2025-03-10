@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
   faCartShopping,
-  faCircleUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
@@ -61,16 +60,6 @@ export default function Header() {
             </p>
           </div>
           <User />
-          {/* <div className="menue d-flex flex-column">
-            <button style={{ fontSize: "20px", background: "white" }}>
-              <FontAwesomeIcon icon={faCircleUser} />
-            </button>
-            <div className="menue-menue">
-              <div className="mange">mange my account</div>
-              <div className="mange">mange my account</div>
-              <div className="mange">mange my account</div>
-            </div>
-          </div> */}
         </div>
       </nav>
     </div>
