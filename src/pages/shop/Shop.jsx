@@ -10,16 +10,45 @@ export default function Shop() {
   const [product, setProduct] = useState([]);
   const [stat, setStat] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8;
+  const productsPerPage = 12;
 
   const changeBG = (i) => {
     setStat((prev) => ({ ...prev, [i]: !prev[i] }));
   };
 
   useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then((res) => {
-      setProduct(res.data);
-    });
+    const fetchProducts = async () => {
+      try {
+        const [fakeStoreRes, dummyJsonRes] = await Promise.all([
+          axios.get("https://fakestoreapi.com/products"),
+          axios.get("https://dummyjson.com/products"),
+        ]);
+
+        const fakeStoreProducts = fakeStoreRes.data.map((item) => ({
+          id: `fake-${item.id}`,
+          title: item.title,
+          price: item.price,
+          image: item.image,
+          rating: item.rating.rate,
+          stock: item.rating.count,
+        }));
+
+        const dummyJsonProducts = dummyJsonRes.data.products.map((item) => ({
+          id: `dummy-${item.id}`,
+          title: item.title,
+          price: item.price,
+          image: item.thumbnail,
+          rating: item.rating,
+          stock: item.stock,
+        }));
+
+        setProduct([...fakeStoreProducts, ...dummyJsonProducts]);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   // Pagination logic
@@ -43,7 +72,11 @@ export default function Shop() {
           <div className="box" key={e.id} style={{ height: "450px" }}>
             <div className="box-image">
               <Link to={`/product-details/${e.id}`}>
-                <img src={e.image} className="object-fit-contain p-2" />
+                <img
+                  src={e.image}
+                  className="object-fit-contain p-2"
+                  alt={e.title}
+                />
               </Link>
               <div className="box-icon">
                 <button
@@ -71,7 +104,7 @@ export default function Shop() {
                 <p>{e.price}$</p>
                 <div className="rate">
                   <p className="text-dark">
-                    {e.rating.rate}⭐ <span>({e.rating.count})</span>
+                    {e.rating}⭐ <span>({e.stock} left)</span>
                   </p>
                 </div>
               </div>
@@ -79,6 +112,7 @@ export default function Shop() {
           </div>
         ))}
       </div>
+
       {/* Pagination Controls */}
       <div className="pagination d-flex justify-content-center mt-4">
         <button

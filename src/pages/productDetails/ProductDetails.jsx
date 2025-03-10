@@ -9,44 +9,91 @@ import { cartContext } from "../../Feautres/ContextProvider";
 export default function ProductDetails() {
   const { dispatch } = useContext(cartContext);
   const [selectedColor, setSelectedColor] = useState("");
-  const [product, setProducts] = useState({});
+  const [product, setProduct] = useState(null);
   const [inc, setInc] = useState(1);
   const [stat, setStat] = useState({});
   const [selectId, setSelectId] = useState(null);
   const size = ["XS", "S", "M", "L", "XL"];
-  let parm = useParams();
+  const { id } = useParams();
+
   useEffect(() => {
-    axios.get(`https://fakestoreapi.com/products/${parm.id}`).then((res) => {
-      setProducts(res.data);
-    });
-  }, []);
-  const changeBG = (i) => {
-    setStat((prev) => ({ ...prev, [i]: !prev[i] }));
+    const fetchProduct = async () => {
+      try {
+        let res;
+        if (id.startsWith("dummy-")) {
+          res = await axios.get(
+            `https://dummyjson.com/products/${id.replace("dummy-", "")}`
+          );
+          setProduct({
+            id: res.data.id,
+            title: res.data.title,
+            price: res.data.price,
+            image: res.data.thumbnail,
+            rating: res.data.rating,
+            stock: res.data.stock,
+            description: res.data.description,
+          });
+        } else {
+          res = await axios.get(
+            `https://fakestoreapi.com/products/${id.replace("fake-", "")}`
+          );
+          setProduct({
+            id: res.data.id,
+            title: res.data.title,
+            price: res.data.price,
+            image: res.data.image,
+            rating: res.data.rating.rate,
+            stock: res.data.rating.count,
+            description: res.data.description,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  const changeBG = (productId) => {
+    setStat((prev) => ({ ...prev, [productId]: !prev[productId] }));
   };
-  const Increace = () => {
-    setInc(inc + 1);
+
+  const increase = () => {
+    setInc((prev) => prev + 1);
+    dispatch({ type: "Add", product: { ...product, quantity: inc + 1 } });
   };
-  const Decreace = () => {
+
+  const decrease = () => {
     if (inc > 1) {
-      setInc(inc - 1);
+      setInc((prev) => prev - 1);
+      dispatch({ type: "Add", product: { ...product, quantity: inc - 1 } });
     }
   };
+
+  if (!product) return <p>Loading product details...</p>;
+
   return (
     <div>
       <div className="details-container d-flex">
         <div className="products-image">
-          <img src={product.image} className="object-fit-contain p-2" />
+          <img
+            src={product.image}
+            className="object-fit-contain p-2"
+            alt={product.title}
+          />
         </div>
         <div className="product-details">
           <h3>
-            {product?.title
-              ? product.title.slice(0, 50) +
-                (product.title.length > 10 ? "..." : "")
-              : ""}
+            {product.title?.length > 50
+              ? product.title.slice(0, 50) + "..."
+              : product.title}
           </h3>
           <div className="rate d-flex align-items-center justify-content-between">
-            <p>{product.rating?.rate || product.rating}⭐</p>
-            <p className="shok">In Stock</p>
+            <p>{product.rating}⭐</p>
+            <p className="shok">
+              {product.stock > 0 ? "In Stock" : "Out of Stock"}
+            </p>
           </div>
           <div className="product-price">
             <h3>${product.price}</h3>
@@ -59,56 +106,56 @@ export default function ProductDetails() {
             <input
               type="radio"
               name="color"
-              id="option 1"
               className="radio green"
               onChange={() => setSelectedColor("green")}
             />
             <input
               type="radio"
               name="color"
-              id="option 2"
               className="radio red"
               onChange={() => setSelectedColor("red")}
             />
           </div>
-          <div className="product-size d-flex  gap-3 mb-3">
+          <div className="product-size d-flex gap-3 mb-3">
             <div className="colors">Size:</div>
-            {size.map((e, i) => {
-              return (
-                <p
-                  key={i}
-                  className={`${selectId == i ? "bg-red" : ""}`}
-                  onClick={() => setSelectId(i)}
-                >
-                  {e}
-                </p>
-              );
-            })}
+            {size.map((e, i) => (
+              <p
+                key={i}
+                className={`${selectId === i ? "bg-red" : ""}`}
+                onClick={() => setSelectId(i)}
+              >
+                {e}
+              </p>
+            ))}
           </div>
           <div className="chec-product d-flex">
             <div className="qnty d-flex">
-              <button onClick={Decreace}>-</button>
+              <button onClick={decrease}>-</button>
               <p>{inc}</p>
-              <button className="red" onClick={Increace}>
+              <button className="red" onClick={increase}>
                 +
               </button>
             </div>
             <Link
               to={"/cart"}
-              onClick={() => dispatch({ type: "Add", product: product })}
+              onClick={() =>
+                dispatch({
+                  type: "Add",
+                  product: { ...product, quantity: inc },
+                })
+              }
             >
               Buy Now
             </Link>
-            <div className="add-wishlest">
+            <div className="add-wishlist">
               <button
-                className={` ${stat[product.id] ? "red" : "text-dark"}`}
-                onClick={() => dispatch({ type: "Add_Hart", product: product })}
+                className={stat[product.id] ? "red" : "text-dark"}
+                onClick={() => {
+                  dispatch({ type: "Add_Hart", product });
+                  changeBG(product.id);
+                }}
               >
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  className="icon"
-                  onClick={() => changeBG(product.id)}
-                />
+                <FontAwesomeIcon icon={faHeart} className="icon" />
               </button>
             </div>
           </div>

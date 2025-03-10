@@ -63,7 +63,7 @@ export default function Product1() {
                 <p>{e.price}$</p>
                 <div className="rate">
                 <p className="text-dark">
-                {e.rating.rate}⭐ <span>({e.rating.count})</span>
+                {e.rating.rate}⭐ <span>({e.rating.count} left)</span>
                 </p>
                 </div>
               </div>
