@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import img from "./assat/102593215-102593340.png";
 import { auth } from "./firebase";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 export default function SignWithGoogle() {
   const nanigate = useNavigate();
   function googleLogin() {

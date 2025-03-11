@@ -43,7 +43,7 @@ export default function Signin() {
   };
 
   return (
-    <div className="signin">
+    <div className="signin flex-wrap">
       <div className="left-side">
         <img src={img1} alt="Sign In" />
       </div>

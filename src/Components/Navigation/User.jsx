@@ -19,6 +19,9 @@ export default function User() {
   const storedEmail = localStorage.getItem("userEmail"); //check if user signIn
   const handleLogout = () => {
     localStorage.removeItem("userEmail");
+    localStorage.removeItem("userFirstName");
+    localStorage.removeItem("userFullName");
+    localStorage.removeItem("userLastName");
     setUserEmail(null);
     setOpen(!open);
     navigate("/login");
@@ -37,19 +40,21 @@ export default function User() {
 
   return (
     <div className="position-relative" ref={menuRef}>
-      <button
-        onClick={toggleMenu}
-        className={`${storedEmail ? "bg-white" : "d-none"}`}
-      >
+      <button onClick={toggleMenu} className={"bg-white"}>
         <FontAwesomeIcon icon={faCircleUser} style={{ fontSize: "20px" }} />
       </button>
       <div className={`${open ? "abs" : "d-none"}`}>
-        <ul className="py-2 d-flex flex-column user">
-          <li className="d-flex align-items-center">
-            <Link
-              to={"mange-account"}
-              className="d-flex align-items-center"
-            >
+        <ul
+          className={`py-2 d-flex flex-column user ${
+            storedEmail ? "h280" : "h220"
+          }`}
+        >
+          <li
+            className={`${
+              storedEmail ? "d-flex align-items-center" : "d-none"
+            }`}
+          >
+            <Link to={"mange-account"} className="d-flex align-items-center">
               <FontAwesomeIcon
                 icon={faCircleUser}
                 style={{ fontSize: "20px" }}
@@ -72,14 +77,32 @@ export default function User() {
             <FontAwesomeIcon icon={faStar} style={{ fontSize: "20px" }} />
             <span>My Reviews</span>
           </li>
-          <li
-            className="d-flex align-items-center"
-            onClick={handleLogout}
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon icon={faSignOutAlt} style={{ fontSize: "20px" }} />
-            <span>Logout</span>
-          </li>
+          {storedEmail ? (
+            <li
+              className="d-flex align-items-center"
+              onClick={handleLogout}
+              style={{ cursor: "pointer" }}
+            >
+              <FontAwesomeIcon
+                icon={faSignOutAlt}
+                style={{ fontSize: "20px" }}
+              />
+              <span>Logout</span>
+            </li>
+          ) : (
+            <li
+              className="d-flex align-items-center"
+              style={{ cursor: "pointer" }}
+            >
+              <Link to={"/sign"} className="d-flex align-items-center">
+                <FontAwesomeIcon
+                  icon={faCircleUser}
+                  style={{ fontSize: "20px" }}
+                />
+                <span>signIn</span>
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

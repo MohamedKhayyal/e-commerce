@@ -8,7 +8,7 @@ export default function Contact() {
       <p>
         Home / <b>Contact</b>
       </p>
-      <div className="contact-field d-flex align-items-center justify-content-between">
+      <div className="contact-field d-flex align-items-center justify-content-between flex-wrap">
         <div className="contact-call d-flex flex-column head-detail d-flex  shadow mb-5 rounded">
           <div className="calls d-flex align-items-center">
             <div className="calls-call">
@@ -38,7 +38,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-        <div className="contact-input d-flex flex-column head-detail d-flex  shadow mb-5 rounded">
+        <div className="contact-input d-flex flex-column head-detail shadow mb-5 rounded">
           <div className="input-name d-flex align-items-center gap-2">
             <input type="text" placeholder="Your Name" />
             <input type="email" placeholder="Your Email" />

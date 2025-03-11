@@ -14,6 +14,7 @@ import Notfound from "./pages/notFound/Notfound";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import MangeAccount from "./pages/mange account/MangeAccount";
 import Contact from "./pages/contact/Contact";
+import About from "./pages/About/About";
 export default function App() {
   return (
     <div>
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="checkout" element={<Checkout />} />
           <Route path="mange-account" element={<MangeAccount />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="about" element={<About />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         <ToastContainer />
