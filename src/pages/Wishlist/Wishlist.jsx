@@ -7,13 +7,24 @@ import "./index.scss";
 export default function Wishlist() {
   const { wishlist, dispatch } = useContext(cartContext);
 
+  const moveAllToCart = () => {
+    wishlist.forEach((item) => {
+      dispatch({ type: "Add", product: item }); // Add each item to the cart
+    });
+    dispatch({ type: "ClearWishlist" }); // Clear the wishlist
+  };
+
   return (
     <div className="contain">
       <div className="cartLink d-flex align-items-center justify-content-between">
         <p>Wishlist ({wishlist.length})</p>
-        <Link to={"/home"} className="cart-btn">
-          Move All To Bag
-        </Link>
+        {wishlist.length != 0 ? (
+          <Link className="cart-btn" onClick={moveAllToCart}>
+            Move All To Bag
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
       <div className="month-product d-flex align-items-center flex-wrap pt-5">
         {wishlist.length > 0 ? (

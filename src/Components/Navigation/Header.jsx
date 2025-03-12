@@ -1,15 +1,15 @@
 import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faCartShopping,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
 import Search from "./Search";
 import User from "./User";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase/firebase";
 export default function Header() {
+  const [user] = useAuthState(auth); // Track auth state
   const { cart } = useContext(cartContext);
   const { wishlist } = useContext(cartContext);
   return (
@@ -32,11 +32,15 @@ export default function Header() {
               About
             </NavLink>
           </li>
-          <li>
-            <NavLink className={"link"} to="/sign">
-              Sign Up
-            </NavLink>
-          </li>
+          {!user ? (
+            <li>
+              <NavLink className={"link"} to="/sign">
+                Sign Up
+              </NavLink>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
         <Search />
         <div className="shop-icons">

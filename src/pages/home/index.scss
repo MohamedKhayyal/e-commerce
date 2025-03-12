@@ -140,6 +140,11 @@
   border: 1px solid #ddd;
   position: relative;
   border-radius: 6px;
+  transition: 0.3s;
+}
+.box:hover {
+  transform: translateY(-10px);
+  border-bottom: 3px solid #00ff66;
 }
 .box .box-image {
   position: relative;

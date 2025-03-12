@@ -21,6 +21,9 @@ export const CartReducer = (state, action) => {
           : [...state.wishlist, action.product],
       };
 
+    case "ClearWishlist":
+      return { ...state, wishlist: [] };
+
     case "RemoveFromWishlist":
       return {
         ...state,

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import img1 from "./assat/a1c7dc5b68a42239311e510f54d8cd59.jpeg";
 import "./index.scss";
 import { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"; // Import updateProfile
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -11,34 +11,42 @@ import SignWithGoogle from "../../firebase/SignWithGoogle";
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       if (user) {
-        await updateProfile(user, { displayName: name }); // save the name email
+        const nameParts = fullName.trim().split(" ");
+        const firstName = nameParts[0] || "";
+        const lastName = nameParts.slice(1).join(" ") || "";
 
-        // **Store user details in Firestore**
+        await updateProfile(user, { displayName: fullName });
+
         await setDoc(doc(db, "Users", user.uid), {
           email: user.email,
-          name: name,
+          fullName: fullName,
+          firstName: firstName,
+          lastName: lastName,
         });
 
-        toast.success("User Registered successfully", {
+        toast.success("User Registered successfully!", {
           position: "top-center",
         });
-
-        navigate("/login");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
       }
     } catch (error) {
-      toast.error(error.message, {
-        position: "bottom-center",
-      });
+      toast.error(error.message, { position: "bottom-center" });
     }
   };
 
@@ -53,9 +61,9 @@ export default function Signin() {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Full Name"
             required
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setFullName(e.target.value)}
           />
           <input
             type="email"

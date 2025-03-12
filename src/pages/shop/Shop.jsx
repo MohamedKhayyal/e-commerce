@@ -4,14 +4,12 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { cartContext } from "../../Feautres/ContextProvider";
-
 export default function Shop() {
   const { dispatch } = useContext(cartContext);
   const [product, setProduct] = useState([]);
   const [stat, setStat] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
-
   const changeBG = (i) => {
     setStat((prev) => ({ ...prev, [i]: !prev[i] }));
   };
@@ -118,7 +116,10 @@ export default function Shop() {
         <button
           className="btn btn-primary mx-2"
           disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
+          onClick={() => {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo(0, 0);
+          }}
         >
           Previous
         </button>
@@ -128,7 +129,10 @@ export default function Shop() {
             className={`btn mx-1 ${
               currentPage === num ? "btn-dark" : "btn-light"
             }`}
-            onClick={() => setCurrentPage(num)}
+            onClick={() => {
+              setCurrentPage(num);
+              window.scrollTo(0, 0);
+            }}
           >
             {num}
           </button>
@@ -136,7 +140,10 @@ export default function Shop() {
         <button
           className="btn btn-primary mx-2"
           disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() => {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo(0, 0);
+          }}
         >
           Next
         </button>
