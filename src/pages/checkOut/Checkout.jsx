@@ -1,9 +1,19 @@
 import "./index.scss";
 import { cartContext } from "../../Feautres/ContextProvider";
-import { useContext } from "react";
-
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Checkout() {
+  const navigate = useNavigate();
   const { cart } = useContext(cartContext);
+  useEffect(() => {
+    if (!cart || cart.length === 0) {
+      toast.warning("Your cart is Empty", {
+        position: "top-center",
+      });
+      navigate("/shop");
+    }
+  }, [cart, navigate]);
   const subtotal = cart
     .filter((product) => product.price)
     .reduce(

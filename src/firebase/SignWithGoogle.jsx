@@ -30,7 +30,6 @@ export default function SignWithGoogle() {
             lastName,
           });
         }
-
         navigate("/home");
       }
     } catch (error) {
@@ -41,10 +40,9 @@ export default function SignWithGoogle() {
   return (
     <div>
       <button
-        className="m-4 bg-white"
+        className="bg-white withEmail"
         style={{
-          padding: "16px 122px",
-          border: "2px solid #ddd ",
+          padding: "16px 80px",
           borderRadius: "5px",
         }}
         onClick={googleLogin}

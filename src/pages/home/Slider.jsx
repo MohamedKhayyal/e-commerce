@@ -36,7 +36,7 @@ export default function Slider() {
                 </span>
               </Link>
             </div>
-            <img src={img1} alt="Slider Image" />
+            <img src={img1} alt="Slider Image" loading="lazy" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
@@ -51,7 +51,7 @@ export default function Slider() {
                 </span>
               </Link>
             </div>
-            <img src={img3} alt="Slider Image" />
+            <img src={img3} alt="Slider Image" loading="lazy" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
@@ -66,7 +66,7 @@ export default function Slider() {
                 </span>
               </Link>
             </div>
-            <img src={img5} alt="Slider Image" />
+            <img src={img5} alt="Slider Image" loading="lazy" />
           </div>
         </SwiperSlide>
       </Swiper>

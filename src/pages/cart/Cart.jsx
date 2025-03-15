@@ -8,6 +8,7 @@ import {
 import "./index.scss";
 import { cartContext } from "../../Feautres/ContextProvider";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Cart() {
   const { cart, dispatch } = useContext(cartContext);
@@ -28,6 +29,9 @@ export default function Cart() {
   };
   const chLocation = () => {
     if (cart.length === 0) {
+      toast.warning("Your cart is Empty", {
+        position: "top-center",
+      });
       navigate("/shop");
     } else {
       navigate("/checkout");
