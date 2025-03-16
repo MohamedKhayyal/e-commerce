@@ -27,12 +27,20 @@
   background-color: #ddd;
 }
 .slider {
-  width: calc(100% - 300px);
-  margin-left: 50px;
+  margin-left: 20px !important;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background-color: #000000;
 }
 .slider .swiper {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
 }
 
 .slider .swiper-slide {
@@ -45,32 +53,43 @@
 }
 .slider-inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 100%;
 }
 .slider-inner img {
-  display: block;
-  height: 100%;
-  width: 600px;
-  object-fit: cover;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
 }
 .slider-inner .text-slider {
+  max-width: 90%;
+  text-align: center;
   color: white;
   h1 {
-    margin-bottom: 30px;
+    font-size: 2rem !important;
+  }
+  p {
+    font-size: 1.2rem;
   }
   a {
-    padding: 16px 48px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
     color: white;
     border-radius: 5px;
-    background-color: #00ff66;
-    transition: 0.3s;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
     span {
+      margin-left: 8px;
       font-size: 20px;
-      margin-left: 30px;
     }
     &:hover {
-      background-color: #2dff81;
+      background-color: #0056b3;
     }
   }
 }
@@ -357,4 +376,37 @@
 .swiper-button-prev::after,
 .swiper-button-next::after {
   font-size: 30px !important;
+}
+
+@media (max-width: 1290px) {
+  .links-left {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .slider .swiper-slide .slider-inner {
+    flex-direction: row;
+    text-align: left;
+
+    .text-slider {
+      max-width: 50%;
+    }
+    img {
+      max-width: 50%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .slider {
+    padding: 10px;
+  }
+
+  .text-slider h1 {
+    font-size: 1.5rem;
+  }
+
+  .text-slider p {
+    font-size: 1rem;
+  }
 }

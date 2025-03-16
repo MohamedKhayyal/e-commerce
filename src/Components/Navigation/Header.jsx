@@ -1,45 +1,95 @@
 import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faCartShopping,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
 import Search from "./Search";
 import User from "./User";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/firebase";
+
 export default function Header() {
-  const [user] = useAuthState(auth); // Track auth state
-  const { cart } = useContext(cartContext);
-  const { wishlist } = useContext(cartContext);
+  const [user] = useAuthState(auth);
+  const { cart, wishlist } = useContext(cartContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="container">
       <nav>
-        <Link to={"/home"}>Exclusive</Link>
-        <ul>
+        <Link to="/home" className="logo">
+          Exclusive
+        </Link>
+        <div
+          className={`burger ${isOpen ? "open" : ""}`}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+          <div
+            className={`exit ${isOpen ? "open" : ""}`}
+            onClick={() => setIsOpen(false)}
+          >
+            <FontAwesomeIcon icon={faXmark} />
+          </div>
           <li>
-            <NavLink className={"link"} to="/home">
+            <NavLink
+              className="link"
+              to="/home"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink className={"link"} to="/contact">
+            <NavLink
+              className="link"
+              to="/contact"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               Contact
             </NavLink>
           </li>
           <li>
-            <NavLink className={"link"} to="/about">
+            <NavLink
+              className="link"
+              to="/about"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               About
             </NavLink>
           </li>
-          {!user ? (
+          {!user && (
             <li>
-              <NavLink className={"link"} to="/sign">
+              <NavLink
+                className="link"
+                to="/sign"
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 Sign Up
               </NavLink>
             </li>
-          ) : (
-            ""
           )}
         </ul>
         <Search />
@@ -48,9 +98,7 @@ export default function Header() {
             <Link to={"/wishlist"}>
               <FontAwesomeIcon icon={faHeart} style={{ fontSize: "15px" }} />
             </Link>
-            <p style={{ position: "absolute", left: "10px" }} className="ch">
-              {wishlist.length}
-            </p>
+            {wishlist.length > 0 && <p className="ch">{wishlist.length}</p>}
           </div>
           <div className="incr d-flex align-items-center">
             <Link to="/cart">
@@ -59,9 +107,7 @@ export default function Header() {
                 style={{ fontSize: "15px" }}
               />
             </Link>
-            <p style={{ position: "absolute", left: "10px" }} className="ch">
-              {cart.length}
-            </p>
+            {cart.length > 0 && <p className="ch">{cart.length}</p>}
           </div>
           <User />
         </div>

@@ -23,7 +23,7 @@ export default function About() {
           </p>
         </div>
         <div className="story-image">
-          <img src={img1} className=" " loading="lazy" />
+          <img src={img1} loading="lazy" />
         </div>
       </div>
     </div>
