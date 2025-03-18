@@ -21,7 +21,7 @@ export default function Product1() {
   return (
     <div className="this-month">
       <p className="aftr">This Month</p>
-      <div className="timer d-flex  justify-content-between">
+      <div className="timer d-flex flex-wrap">
         <h1>Best Selling Products</h1>
         <Link to={"/shop"} className="view">
           View All
@@ -72,7 +72,7 @@ export default function Product1() {
         ))}
       </div>
       <div className="month-imge">
-        <div className="slider-inner">
+        <div className="slider-inners">
           <div className="text-slider">
             <p style={{ color: "#00FF66" }}>Categories</p>
             <h1 style={{ marginBottom: "50px" }}>

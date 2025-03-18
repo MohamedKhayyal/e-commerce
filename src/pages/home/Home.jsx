@@ -54,10 +54,10 @@ export default function Home() {
         <Product />
         <div className="Categories">
           <p className="aftr">Categories</p>
-          <div className="timer">
+          <div className="timer" style={{ paddingBottom: "40px" }}>
             <h1>Browse By Category</h1>
           </div>
-          <div className="category-items">
+          <div className="category-items text-center">
             {category.map((e, i) => {
               return (
                 <div

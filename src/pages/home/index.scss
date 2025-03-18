@@ -29,7 +29,7 @@
 .slider {
   margin-left: 20px !important;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
   padding: 20px;
   background-color: #000000;
@@ -51,12 +51,18 @@
   justify-content: center;
   align-items: center;
 }
-.slider-inner {
+.slider-inner,
+.slider-inners {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 20px;
   width: 100%;
+}
+.slider-inner {
+  flex-direction: column;
+}
+.slider-inners {
+  justify-content: center;
 }
 .slider-inner img {
   width: 100%;
@@ -64,7 +70,11 @@
   height: auto;
   border-radius: 10px;
 }
-.slider-inner .text-slider {
+.slider-inners img {
+  width: 100%;
+}
+.slider-inner .text-slider,
+.slider-inners .text-slider {
   max-width: 90%;
   text-align: center;
   color: white;
@@ -256,6 +266,7 @@
     }
   }
 }
+
 .view-product {
   padding: 12px 32px;
   background-color: #db4444;
@@ -279,12 +290,18 @@
   }
 }
 @media (max-width: 768px) {
+  .slider-inners {
+    flex-direction: column;
+  }
+  .Categories .category-items {
+    justify-content: center;
+  }
   .home-container .Flash-Sales {
     padding-top: 30px;
     padding-bottom: 30px;
     .timer {
       gap: 50px;
-      flex-direction: column;
+      flex-direction: column !important;
       text-align: center;
       h1 {
         font-size: 28px;
@@ -381,6 +398,10 @@
   border-radius: 5px;
   padding: 20px;
   cursor: pointer;
+}
+.home-container .this-month .timer {
+  padding-bottom: 40px;
+  justify-content: space-between;
 }
 .home-container .this-month .timer .view {
   margin-bottom: 15px;
@@ -488,16 +509,18 @@
   }
 }
 @media (min-width: 768px) {
-  .slider .swiper-slide .slider-inner {
+  .slider .swiper-slide .slider-inner,
+  .slider-inners {
     flex-direction: row;
     text-align: left;
-
-    .text-slider {
-      max-width: 50%;
-    }
-    img {
-      max-width: 50%;
-    }
+  }
+  .slider-inners .text-slider,
+  .slider-inner .text-slider {
+    max-width: 50%;
+  }
+  .slider-inners img,
+  .slider-inner .text-slider {
+    max-width: 50%;
   }
 }
 @media (max-width: 1160px) {
@@ -509,17 +532,21 @@
   .slider {
     padding: 5px;
   }
-  .text-slider h1 {
-    font-size: 1.5rem;
+  .slider-inners .text-slider h1,
+  .slider-inner .text-slider h1 {
+    font-size: 1.5rem !important;
   }
-  .text-slider p {
+  .slider-inner .text-slider p,
+  .slider-inners .text-slider p {
     font-size: 0.9rem;
   }
-  .text-slider a {
+  .slider-inner .text-slider a,
+  .slider-inners .text-slider a {
     padding: 6px 12px;
     font-size: 0.8rem;
   }
-  .slider-inner img {
+  .slider-inner img,
+  .slider-inners img {
     max-width: 300px;
   }
   .home-container .Flash-Sales {
@@ -544,7 +571,6 @@
   .box {
     height: auto;
     padding: 10px;
-    // max-width: 100%;
     width: 300px;
     .box-image img {
       width: 8rem;
