@@ -36,16 +36,14 @@ export default function Product() {
           style={{ paddingBottom: "30px" }}
           modules={[Virtual, Navigation]}
           onSwiper={setSwiperRef}
-          slidesPerView={4}
-          spaceBetween={30}
+          spaceBetween={30} // Default spacing
           pagination={{ type: "fraction" }}
-          navigation={
-            ({
-              prevEl: ".swiper-button-prev",
-              nextEl: ".swiper-button-next",
-            },
-            true)
-          }
+          navigation
+          breakpoints={{
+            1285: { slidesPerView: 4, spaceBetween: 20 }, // Desktops
+            768: { slidesPerView: 2, spaceBetween: 20 }, // Tablets
+            480: { slidesPerView: 1, spaceBetween: 10 }, // Mobile
+          }}
           centeredSlides={false}
         >
           {product.map((e, index) => (
