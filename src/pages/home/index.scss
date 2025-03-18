@@ -303,7 +303,7 @@
   .box {
     height: auto;
     padding: 15px;
-    max-width: 80%;
+    max-width: 100%;
     margin: auto;
     .box-image img {
       width: 10rem;
@@ -544,7 +544,8 @@
   .box {
     height: auto;
     padding: 10px;
-    max-width: 100%;
+    // max-width: 100%;
+    width: 300px;
     .box-image img {
       width: 8rem;
       height: 8rem;
