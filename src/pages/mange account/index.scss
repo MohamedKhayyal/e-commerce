@@ -92,7 +92,6 @@
   .profile {
     width: 100%;
     max-width: 500px;
-    text-align: center;
   }
 
   .edit-profile {
@@ -104,9 +103,11 @@
   .names {
     flex-direction: column;
   }
-
+  .passwords {
+   width: 90%;
+  }
   .passwords input {
-    width: 100%;
+    padding: 10px 20px;
   }
 
   .buttons {
