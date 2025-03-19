@@ -79,78 +79,39 @@ export default function Home() {
           <div className="timer d-flex align-items-center">
             <h1>New Arrival</h1>
           </div>
-          <div className="new-arrival-images d-flex" style={{ gap: "20px" }}>
-            <div
-              className="img-3 d-flex align-items-center justify-content-center"
-              style={{
-                height: "600px",
-                backgroundColor: "#000000",
-                borderRadius: "5px",
-              }}
-            >
-              <img
-                src={img3}
-                alt=""
-                className=""
-                style={{
-                  width: "650px",
-                  height: "400px",
-                }}
-              />
-              <div className="img3-text text-white">
+          <div className="new-arrival-images">
+            <div className="img-3">
+              <img src={img3} alt="" className="img-fluid" />
+              <div className="img3-text">
                 <h3>PlayStation 5</h3>
                 <p>Black and White version of the PS5 coming out on sale.</p>
-                <Link to={"/shop"}>Shop Now</Link>
+                <Link to="/shop">Shop Now</Link>
               </div>
             </div>
-            <div
-              className="new-arrival-right  d-flex align-items-center flex-column"
-              style={{ gap: "20px" }}
-            >
+            <div className="new-arrival-right">
               <div className="img-4">
-                <img
-                  src={img4}
-                  alt=""
-                  className=""
-                  style={{ height: "286px", borderRadius: "5px" }}
-                  width={620}
-                />
-                <div className="img3-text text-white">
+                <img src={img4} alt="" className="img-fluid" />
+                <div className="img3-text">
                   <h3>Women’s Collections</h3>
                   <p>Featured woman collections that give you another vibe.</p>
-                  <Link to={"/shop"}>Shop Now</Link>
+                  <Link to="/shop">Shop Now</Link>
                 </div>
               </div>
-              <div
-                className="parfan d-flex align-items-center"
-                style={{ gap: "20px" }}
-              >
+              <div className="parfan">
                 <div className="img-5">
-                  <img
-                    src={img5}
-                    width={300}
-                    height={288}
-                    style={{ backgroundColor: "#000000", borderRadius: "5px" }}
-                    alt=""
-                  />
-                  <div className="img3-text text-white">
+                  <img src={img5} alt="" className="img-fluid" />
+                  <div className="img3-text">
                     <h3>Speakers</h3>
                     <p>Amazon wireless speakers</p>
-                    <Link to={"/shop"}>Shop Now</Link>
+                    <Link to="/shop">Shop Now</Link>
                   </div>
                 </div>
                 <div className="img-6">
-                  <img
-                    src={img6}
-                    width={300}
-                    height={288}
-                    style={{ backgroundColor: "#000000", borderRadius: "5px" }}
-                    alt=""
-                  />
-                  <div className="img3-text text-white">
+                  <img src={img6} alt="" className="img-fluid" />
+                  <div className="img3-text">
                     <h3>Perfume</h3>
                     <p>GUCCI INTENSE OUD EDP</p>
-                    <Link to={"/shop"}>Shop Now</Link>
+                    <Link to="/shop">Shop Now</Link>
                   </div>
                 </div>
               </div>

@@ -1,46 +1,137 @@
-.profile ul li {
+.cart-container {
+  padding: 50px 70px;
+}
+.loac-name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mange-acc-profile {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.profile {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.profile ul {
   list-style: none;
+}
+
+.profile li {
   cursor: pointer;
-  b {
-    font-size: 16px;
-  }
-  p {
-    font-size: 16px;
-    opacity: 50%;
-  }
+  margin-bottom: 15px;
+  font-size: 16px;
 }
 .edit-profile {
-  width: 870px;
-  height: 550px;
-  padding: 50px 80px;
+  flex: 2;
+  min-width: 450px;
+  max-width: 800px;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
 }
-.names input,
-.passwords input {
-  width: 330px;
+.names {
+  display: flex;
+  gap: 20px;
+}
+
+.names input {
+  flex: 1;
   height: 40px;
   background-color: #f5f5f5;
   border: none;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 10px 15px;
 }
+.passwords {
+  width: 100%;
+}
+
 .passwords input {
   width: 100%;
+  height: 40px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
   margin-bottom: 10px;
 }
+
 .buttons {
   margin-top: 20px;
-  text-align: right;
   display: flex;
   justify-content: flex-end;
-  gap: 30px;
-  .bton {
-    padding: 16px 48px;
-    background-color: #db4444;
-    color: white;
-    border-radius: 6px;
+  gap: 20px;
+}
+
+.bton {
+  padding: 12px 36px;
+  background-color: #db4444;
+  color: white;
+  border-radius: 6px;
+}
+
+.buttons a {
+  padding: 12px 36px;
+  color: black;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  .mange-acc-profile {
+    flex-direction: column;
+    align-items: center;
   }
-  a {
-    padding: 16px 48px;
-    color: #000000;
+
+  .profile {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .edit-profile {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+  }
+
+  .names {
+    flex-direction: column;
+  }
+
+  .passwords input {
+    width: 100%;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .bton,
+  .buttons a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-container {
+    padding: 30px 10px;
+  }
+
+  .edit-profile {
+    padding: 20px;
+  }
+
+  .buttons {
+    gap: 10px;
   }
 }

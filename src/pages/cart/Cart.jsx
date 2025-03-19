@@ -43,7 +43,7 @@ export default function Cart() {
         Home / <b>Cart</b>
       </p>
       <div className="cart-product">
-        <div className="head-detail d-flex align-items-center justify-content-between shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div className="head-details align-items-center justify-content-between shadow p-3 mb-5 bg-body-tertiary rounded">
           <p>Product</p>
           <p>Name</p>
           <p>Price</p>

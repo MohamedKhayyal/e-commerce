@@ -22,8 +22,8 @@ export default function Contact() {
             <p>We are available 24/7, 7 days a week.</p>
             <p>Phone: +8801611112222</p>
           </div>
-          <div className="contact-mail">
-            <div className="contact-contact d-flex align-items-center">
+          <div className="contact-mail d-flex align-items-center flex-column">
+            <div className="contact-contact d-flex align-items-center" style={{gap:"10px",marginBottom:"20px"}}>
               <div className="calls-call">
                 <FontAwesomeIcon icon={faEnvelope} />
               </div>

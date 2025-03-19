@@ -16,7 +16,7 @@ export default function Wishlist() {
 
   return (
     <div className="contain">
-      <div className="cartLink d-flex align-items-center justify-content-between">
+      <div className="cartLink d-flex align-items-center justify-content-between flex-wrap">
         <p>Wishlist ({wishlist.length})</p>
         {wishlist.length != 0 ? (
           <Link className="cart-btn" onClick={moveAllToCart}>
