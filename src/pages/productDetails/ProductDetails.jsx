@@ -7,7 +7,10 @@ import { Link, useParams } from "react-router-dom";
 import { cartContext } from "../../Feautres/ContextProvider";
 
 export default function ProductDetails() {
-  const { dispatch } = useContext(cartContext);
+  const { state, dispatch } = useContext(cartContext) || {
+    state: { cart: [] },
+    dispatch: () => {},
+  };
   const [selectedColor, setSelectedColor] = useState("");
   const [product, setProduct] = useState(null);
   const [inc, setInc] = useState(1);
@@ -61,16 +64,20 @@ export default function ProductDetails() {
 
   const increase = () => {
     setInc((prev) => prev + 1);
-    dispatch({ type: "Add", product: { ...product, quantity: inc + 1 } });
+    dispatch({ type: "INCREASE_QUANTITY", payload: product.id });
   };
 
   const decrease = () => {
     if (inc > 1) {
       setInc((prev) => prev - 1);
-      dispatch({ type: "Add", product: { ...product, quantity: inc - 1 } });
+      dispatch({ type: "DECREASE_QUANTITY", payload: product.id });
     }
   };
-
+  useEffect(() => {
+    if (!state || !state.cart) return;
+    const cartItem = state.cart.find((item) => item.id === Number(id));
+    setInc(cartItem ? cartItem.quantity : 1);
+  }, [id, state?.cart]);
   if (!product) return <p>Loading product details...</p>;
 
   return (
@@ -132,21 +139,22 @@ export default function ProductDetails() {
             <div className="qnty d-flex">
               <button onClick={decrease}>-</button>
               <p>{inc}</p>
-              <button className="red" onClick={increase}>
+              <button className="" onClick={increase}>
                 +
               </button>
             </div>
             <Link
               to={"/cart"}
-              onClick={() =>
+              onClick={() => {
                 dispatch({
                   type: "Add",
-                  product: { ...product, quantity: inc },
-                })
-              }
+                  product: { ...product, quantity: inc || 1 },
+                });
+              }}
             >
               Buy Now
             </Link>
+
             <div className="add-wishlist">
               <button
                 className={stat[product.id] ? "red" : "text-dark"}

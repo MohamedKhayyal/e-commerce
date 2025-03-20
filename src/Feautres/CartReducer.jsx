@@ -5,12 +5,11 @@ export const CartReducer = (state, action) => {
       return {
         ...state,
         cart: state.cart.some((item) => item.id === action.product.id)
-          ? state.cart.map((item) =>
-              item.id === action.product.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            )
-          : [...state.cart, { ...action.product, quantity: 1 }],
+          ? state.cart
+          : [
+              ...state.cart,
+              { ...action.product, quantity: action.product.quantity || 1 },
+            ],
       };
 
     case "Add_Hart":
