@@ -29,7 +29,7 @@ export default function Product() {
       <p className="aftr">Today’s</p>
       <div className="timer d-flex align-items-center">
         <h1>Flash Sales</h1>
-        <CountdownTimer targetDate="2025-03-01T00:00:00" />
+        <CountdownTimer targetDate="2025-05-02T00:00:00" />
       </div>
       <div className="product-item1 ">
         <Swiper
