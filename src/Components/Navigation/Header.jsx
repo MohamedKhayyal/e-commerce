@@ -1,10 +1,6 @@
 import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faCartShopping,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
@@ -18,13 +14,20 @@ export default function Header() {
   const { cart, wishlist } = useContext(cartContext);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const burgerRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        burgerRef.current &&
+        !burgerRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -34,10 +37,8 @@ export default function Header() {
   return (
     <div className="container">
       <nav>
-        <Link to="/home" className="logo">
-          Exclusive
-        </Link>
         <div
+          ref={burgerRef}
           className={`burger ${isOpen ? "open" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -45,19 +46,15 @@ export default function Header() {
           <span></span>
           <span></span>
         </div>
-
-        <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          <div
-            className={`exit ${isOpen ? "open" : ""}`}
-            onClick={() => setIsOpen(false)}
-          >
-            <FontAwesomeIcon icon={faXmark} />
-          </div>
+        <Link to="/home" className="logo">
+          Exclusive
+        </Link>
+        <ul ref={menuRef} className={`nav-links ${isOpen ? "open" : ""}`}>
           <li>
             <NavLink
               className="link"
               to="/home"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsOpen(false)}
             >
               Home
             </NavLink>
@@ -66,7 +63,7 @@ export default function Header() {
             <NavLink
               className="link"
               to="/contact"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsOpen(false)}
             >
               Contact
             </NavLink>
@@ -75,7 +72,7 @@ export default function Header() {
             <NavLink
               className="link"
               to="/about"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsOpen(false)}
             >
               About
             </NavLink>
@@ -85,7 +82,7 @@ export default function Header() {
               <NavLink
                 className="link"
                 to="/sign"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsOpen(false)}
               >
                 Sign Up
               </NavLink>
@@ -95,7 +92,7 @@ export default function Header() {
         <Search />
         <div className="shop-icons">
           <div className="incr d-flex align-items-center">
-            <Link to={"/wishlist"}>
+            <Link to="/wishlist">
               <FontAwesomeIcon icon={faHeart} style={{ fontSize: "15px" }} />
             </Link>
             {wishlist.length > 0 && <p className="ch">{wishlist.length}</p>}

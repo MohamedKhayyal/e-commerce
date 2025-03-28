@@ -242,7 +242,8 @@ nav input::placeholder {
 @media (max-width: 1090px) {
   .burger {
     display: block;
-    z-index: 100;
+    z-index: 1000;
+    left: -10px !important;
   }
   .link {
     color: white !important;
@@ -263,10 +264,13 @@ nav input::placeholder {
     align-items: center;
     z-index: 999;
   }
-
   .exit.open {
     position: fixed;
     left: 15px;
+  }
+  .burger.open {
+    position: fixed;
+    left: 10px !important;
   }
   .nav-links.open {
     left: 0;
