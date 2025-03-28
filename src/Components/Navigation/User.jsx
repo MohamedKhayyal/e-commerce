@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebase"; 
+import { auth } from "../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -52,7 +52,10 @@ export default function User() {
       <div className={` ${open ? "abs" : "d-none"}`}>
         <ul className="py-2 d-flex flex-column user pb-3">
           {user && (
-            <li className="d-flex align-items-center">
+            <li
+              className="d-flex align-items-center"
+              onClick={() => setOpen(false)}
+            >
               <Link to="/mange-account" className="d-flex align-items-center">
                 <FontAwesomeIcon
                   icon={faCircleUser}
