@@ -183,7 +183,6 @@ nav input::placeholder {
   cursor: pointer;
   position: relative;
 }
-
 .burger span {
   display: block;
   width: 100%;
@@ -239,10 +238,20 @@ nav input::placeholder {
   font-size: 30px;
   transition: left 0.4s ease;
 }
+.lik {
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+}
 @media (max-width: 1090px) {
+  .lik {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
   .burger {
     display: block;
-    z-index: 1000;
     left: -10px !important;
   }
   .link {

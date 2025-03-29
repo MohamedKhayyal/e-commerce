@@ -1,6 +1,10 @@
 import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faCartShopping,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
@@ -50,6 +54,9 @@ export default function Header() {
           Exclusive
         </Link>
         <ul ref={menuRef} className={`nav-links ${isOpen ? "open" : ""}`}>
+          <li className="lik text-black" onClick={() => setIsOpen(false)}>
+            <FontAwesomeIcon icon={faXmark} />
+          </li>
           <li>
             <NavLink
               className="link"
