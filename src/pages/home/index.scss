@@ -207,7 +207,7 @@
       background-color: #f5f5f5;
       border-radius: 50%;
       position: absolute;
-      top: 10%;
+      top: 10px;
       right: 10px;
       cursor: pointer;
       display: flex;
@@ -720,5 +720,11 @@
         }
       }
     }
+  }
+}
+@media (max-width: 820px) {
+  .box .box-image .box-icon {
+    top: 0;
+    right: 0;
   }
 }
