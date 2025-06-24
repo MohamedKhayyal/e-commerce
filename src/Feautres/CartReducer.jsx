@@ -23,6 +23,9 @@ export const CartReducer = (state, action) => {
     case "ClearWishlist":
       return { ...state, wishlist: [] };
 
+    case "ClearCart":
+      return { ...state, cart: [] };
+
     case "RemoveFromWishlist":
       return {
         ...state,
@@ -57,6 +60,16 @@ export const CartReducer = (state, action) => {
         ),
       };
 
+    case "UPDATE_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: Math.max(action.payload.quantity, 1) }
+            : item
+        ),
+      };
+
     case "UPDATE_CART":
       return {
         ...state,
@@ -64,6 +77,13 @@ export const CartReducer = (state, action) => {
           ...item,
           quantity: item.quantity || 1,
         })),
+      };
+
+    case "LOAD_STATE":
+      return {
+        ...state,
+        cart: action.payload.cart || [],
+        wishlist: action.payload.wishlist || [],
       };
 
     default:

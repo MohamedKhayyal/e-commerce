@@ -2,12 +2,188 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>ShopEase - Premium E-commerce Store | Electronics, Fashion & More</title>
+    <meta name="title" content="ShopEase - Premium E-commerce Store | Electronics, Fashion & More">
+    <meta name="description" content="Discover amazing deals on electronics, fashion, home & lifestyle products. Free shipping on orders over $140. 24/7 customer support. Shop now!">
+    <meta name="keywords" content="e-commerce, online shopping, electronics, fashion, home decor, lifestyle, smartphones, laptops, gaming, fashion accessories">
+    <meta name="author" content="ShopEase">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shopease.com/">
+    <meta property="og:title" content="ShopEase - Premium E-commerce Store">
+    <meta property="og:description" content="Discover amazing deals on electronics, fashion, home & lifestyle products. Free shipping on orders over $140.">
+    <meta property="og:image" content="/og-image.jpg">
+    <meta property="og:site_name" content="ShopEase">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shopease.com/">
+    <meta property="twitter:title" content="ShopEase - Premium E-commerce Store">
+    <meta property="twitter:description" content="Discover amazing deals on electronics, fashion, home & lifestyle products. Free shipping on orders over $140.">
+    <meta property="twitter:image" content="/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="msapplication-TileColor" content="#0ea5e9">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fakestoreapi.com">
+    <link rel="preconnect" href="https://dummyjson.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ShopEase",
+      "url": "https://shopease.com",
+      "logo": "https://shopease.com/logo.png",
+      "description": "Premium E-commerce store offering electronics, fashion, and lifestyle products",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-800-SHOP-EASE",
+        "contactType": "customer service",
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://facebook.com/shopease",
+        "https://twitter.com/shopease",
+        "https://instagram.com/shopease"
+      ]
+    }
+    </script>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- Performance -->
+    <link rel="dns-prefetch" href="//fakestoreapi.com">
+    <link rel="dns-prefetch" href="//dummyjson.com">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="ShopEase">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ShopEase">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Loading State -->
+    <style>
+      #root {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+      
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #e2e8f0;
+        border-top: 4px solid #0ea5e9;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        margin-top: 20px;
+        color: #64748b;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+      }
+    </style>
   </head>
   <body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading">
+      <div style="text-align: center;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading ShopEase...</div>
+      </div>
+    </div>
+    
+    <!-- Main App Container -->
     <div id="root"></div>
+    
+    <!-- Scripts -->
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Remove loading screen when app loads -->
+    <script>
+      window.addEventListener('load', function() {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.opacity = '0';
+          loading.style.transition = 'opacity 0.5s ease-out';
+          setTimeout(() => {
+            loading.style.display = 'none';
+          }, 500);
+        }
+      });
+      
+      // Fallback: hide loading screen after 5 seconds
+      setTimeout(() => {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.display = 'none';
+        }
+      }, 5000);
+    </script>
+    
+    <!-- Service Worker Registration (for PWA) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
+    <!-- Analytics (example) -->
+    <script>
+      // Google Analytics or other analytics code can go here
+      console.log('ShopEase - Premium E-commerce Store');
+    </script>
   </body>
 </html>

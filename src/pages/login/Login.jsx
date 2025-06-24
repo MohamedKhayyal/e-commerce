@@ -3,12 +3,23 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { auth } from "../../firebase/firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faEnvelope, 
+  faLock, 
+  faEye, 
+  faEyeSlash, 
+  faUser,
+  faSpinner,
+  faKey
+} from "@fortawesome/free-solid-svg-icons";
 import img1 from "./assat/a1c7dc5b68a42239311e510f54d8cd59.jpeg";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // For button loading state
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -37,46 +48,128 @@ export default function Login() {
     }
     setLoading(false);
   };
+
   return (
-    <div className="signin flex-wrap">
-      <div className="left-side">
-        <img src={img1} alt="Sign In" />
-      </div>
-      <div className="right-side">
-        <h1>Log in to Exclusive</h1>
-        <p>Enter your details below</p>
-        <form onSubmit={handleSubmit}>
-          <input
-            className="pt-4"
-            type="email"
-            placeholder="Email or phone number"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div className="d-flex align-items-center gap-5">
-            <button type="submit" disabled={loading}>
-              {loading ? "Logging in..." : "Log In"}
-            </button>
-            <span
-              style={{
-                color: "#db4444",
-                fontSize: "14px",
-                cursor: "pointer",
-              }}
-            >
-              Forget Password?
-            </span>
+    <section className="relative min-h-screen bg-gradient-to-br from-white to-gray-50 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-primary-200/40 to-secondary-200/40 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary-200/30 to-primary-200/30 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+      
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Image */}
+            <div className="hidden lg:block">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative bg-white rounded-3xl p-2 shadow-soft">
+                  <img 
+                    src={img1} 
+                    alt="Sign In" 
+                    className="w-full h-auto rounded-2xl object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Login Form */}
+            <div className="bg-white/80 backdrop-blur-xl border border-gray-100 rounded-3xl shadow-soft p-8 lg:p-12">
+              <div className="text-center mb-8">
+                <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                  Log in to <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Exclusive</span>
+                </h1>
+                <p className="text-gray-600">Enter your details below</p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 mr-2 text-primary-600" />
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <FontAwesomeIcon icon={faLock} className="w-4 h-4 mr-2 text-primary-600" />
+                    Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                    >
+                      <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="flex-1 mr-4 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 shadow-soft hover:shadow-medium hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 animate-spin" />
+                        Logging in...
+                      </>
+                    ) : (
+                      <>
+                        <FontAwesomeIcon icon={faUser} className="w-4 h-4" />
+                        Log In
+                      </>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    className="text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors duration-200 flex items-center gap-2"
+                  >
+                    <FontAwesomeIcon icon={faKey} className="w-4 h-4" />
+                    Forgot Password?
+                  </button>
+                </div>
+              </form>
+
+              {/* Divider */}
+              <div className="my-8 flex items-center">
+                <div className="flex-1 border-t border-gray-200"></div>
+                <span className="px-4 text-sm text-gray-500">or</span>
+                <div className="flex-1 border-t border-gray-200"></div>
+              </div>
+
+              {/* Social Login Placeholder */}
+              <div className="text-center">
+                <p className="text-sm text-gray-600 mb-4">Don't have an account?</p>
+                <button
+                  onClick={() => navigate("/sign")}
+                  className="w-full py-3 bg-white border border-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-soft hover:shadow-medium"
+                >
+                  Create Account
+                </button>
+              </div>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

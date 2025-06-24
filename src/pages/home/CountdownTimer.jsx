@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 export default function CountdownTimer({ targetDate }) {
   const calculateTimeLeft = () => {
     const difference = new Date(targetDate) - new Date();
@@ -22,30 +23,34 @@ export default function CountdownTimer({ targetDate }) {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  const timeUnits = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Minutes", value: timeLeft.minutes },
+    { label: "Seconds", value: timeLeft.seconds },
+  ];
+
   return (
-    <div className="days-time d-flex align-items-center">
-      <div className="days">
-        <p>Days</p>
-        <h2>
-          {timeLeft.days} <span style={{ color: "#E07575" }}>:</span>
-        </h2>
-      </div>
-      <div className="hours">
-        <p>Hours</p>
-        <h2>
-          {timeLeft.hours} <span style={{ color: "#E07575" }}>:</span>
-        </h2>
-      </div>
-      <div className="minutes">
-        <p>Minutes</p>
-        <h2>
-          {timeLeft.minutes} <span style={{ color: "#E07575" }}>:</span>
-        </h2>
-      </div>
-      <div className="seconds">
-        <p>Seconds</p>
-        <h2>{timeLeft.seconds}</h2>
-      </div>
+    <div className="flex items-center space-x-2 lg:space-x-4">
+      {timeUnits.map((unit, index) => (
+        <div key={unit.label} className="flex items-center">
+          <div className="text-center">
+            <div className="bg-primary-600 text-white rounded-lg px-3 py-2 lg:px-4 lg:py-3 min-w-[60px] lg:min-w-[80px]">
+              <p className="text-xs lg:text-sm font-medium opacity-90">
+                {unit.label}
+              </p>
+              <p className="text-lg lg:text-xl font-bold">
+                {unit.value.toString().padStart(2, '0')}
+              </p>
+            </div>
+          </div>
+          {index < timeUnits.length - 1 && (
+            <span className="text-primary-600 font-bold text-lg lg:text-xl mx-1 lg:mx-2">
+              :
+            </span>
+          )}
+        </div>
+      ))}
     </div>
   );
 }

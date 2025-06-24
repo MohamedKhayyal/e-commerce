@@ -1,11 +1,31 @@
-import "./index.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faHome, 
+  faChevronRight, 
+  faUser, 
+  faBuilding, 
+  faMapMarkerAlt, 
+  faPhone, 
+  faEnvelope,
+  faCreditCard,
+  faMoneyBillWave,
+  faTag,
+  faShoppingCart,
+  faCheckCircle,
+  faSave,
+  faLock
+} from "@fortawesome/free-solid-svg-icons";
 import { cartContext } from "../../Feautres/ContextProvider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 export default function Checkout() {
   const navigate = useNavigate();
   const { cart } = useContext(cartContext);
+  const [paymentMethod, setPaymentMethod] = useState("bank");
+  const [saveInfo, setSaveInfo] = useState(false);
+
   useEffect(() => {
     if (!cart || cart.length === 0) {
       toast.warning("Your cart is Empty", {
@@ -14,6 +34,7 @@ export default function Checkout() {
       navigate("/shop");
     }
   }, [cart, navigate]);
+
   const subtotal = cart
     .filter((product) => product.price)
     .reduce(
@@ -22,94 +43,263 @@ export default function Checkout() {
       0
     )
     .toFixed(2);
+
+  const handlePlaceOrder = () => {
+    toast.success("Order placed successfully!", {
+      position: "top-center",
+    });
+    navigate("/home");
+  };
+
   return (
-    <div className="cart-container">
-      <p>
-        Account / My Account / Product / View Cart / <b>CheckOut</b>
-      </p>
-      <div className="details d-flex justify-content-between">
-        <div className="inputs d-flex flex-column">
-          <h2>Billing Details</h2>
-          <label>First Name</label>
-          <input className="inp" type="text" />
-          <label>Company Name</label>
-          <input className="inp" type="text" />
-          <label>Street Address</label>
-          <input className="inp" type="text" />
-          <label>Apartment, floor, etc. (optional)</label>
-          <input className="inp" type="text" />
-          <label>Town/City</label>
-          <input className="inp" type="text" />
-          <label>Phone Number</label>
-          <input className="inp" type="email" />
-          <label>Email Address</label>
-          <input className="inp" type="text" />
-          <div className="check-Box d-flex align-items-center">
-            <input type="checkbox" id="checkbox" class="custom-checkbox" />
-            <label for="checkbox" style={{ opacity: "100%" }}>
-              Save this information for faster check-out next time
-            </label>
-          </div>
-        </div>
-        <div className="chechout-data">
-          <div className="cart-datas">
-            {cart.map((e) => (
-              <div
-                key={e.id}
-                className="head-details d-flex align-items-center p-3"
-              >
-                <div className="body-details d-flex align-items-center">
-                  <div className="delete-cart">
-                    <img src={e.image} alt="Product" width={50} />
+    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-white to-gray-50 min-h-screen overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-primary-200/40 to-secondary-200/40 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary-200/30 to-primary-200/30 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Breadcrumb */}
+        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-12">
+          <a href="/" className="flex items-center hover:text-primary-600 transition-colors duration-200">
+            <FontAwesomeIcon icon={faHome} className="w-4 h-4 mr-1" />
+            Home
+          </a>
+          <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3" />
+          <span className="text-gray-600">Account</span>
+          <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3" />
+          <span className="text-gray-600">My Account</span>
+          <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3" />
+          <span className="text-gray-600">Product</span>
+          <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3" />
+          <span className="text-gray-600">View Cart</span>
+          <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3" />
+          <span className="font-semibold text-gray-900">Checkout</span>
+        </nav>
+
+        <div className="grid lg:grid-cols-3 gap-12">
+          {/* Billing Details Form */}
+          <div className="lg:col-span-2">
+            <div className="bg-white/80 backdrop-blur-xl border border-gray-100 rounded-3xl shadow-soft p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
+                <FontAwesomeIcon icon={faUser} className="text-primary-600 w-6 h-6" />
+                Billing Details
+              </h2>
+              
+              <form className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <FontAwesomeIcon icon={faUser} className="w-4 h-4 mr-2 text-primary-600" />
+                      First Name
+                    </label>
+                    <input 
+                      type="text" 
+                      placeholder="Enter your first name"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                    />
                   </div>
-                  <p>
-                    {e.title.length > 12
-                      ? e.title.slice(0, 12) + "..."
-                      : e.title}
-                  </p>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <FontAwesomeIcon icon={faBuilding} className="w-4 h-4 mr-2 text-primary-600" />
+                      Company Name
+                    </label>
+                    <input 
+                      type="text" 
+                      placeholder="Enter company name (optional)"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                    />
+                  </div>
                 </div>
-                <p>
-                  ${e.price ? ((e.quantity || 1) * e.price).toFixed(2) : "0.00"}
-                </p>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 mr-2 text-primary-600" />
+                    Street Address
+                  </label>
+                  <input 
+                    type="text" 
+                    placeholder="Enter your street address"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Apartment, floor, etc. (optional)
+                  </label>
+                  <input 
+                    type="text" 
+                    placeholder="Apartment, suite, floor, etc."
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                  />
+                </div>
+                
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 mr-2 text-primary-600" />
+                      Town/City
+                    </label>
+                    <input 
+                      type="text" 
+                      placeholder="Enter your city"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <FontAwesomeIcon icon={faPhone} className="w-4 h-4 mr-2 text-primary-600" />
+                      Phone Number
+                    </label>
+                    <input 
+                      type="tel" 
+                      placeholder="Enter your phone number"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 mr-2 text-primary-600" />
+                    Email Address
+                  </label>
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email address"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
+                  />
+                </div>
+                
+                <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
+                  <input 
+                    type="checkbox" 
+                    id="saveInfo" 
+                    checked={saveInfo}
+                    onChange={(e) => setSaveInfo(e.target.checked)}
+                    className="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                  />
+                  <label htmlFor="saveInfo" className="text-sm text-gray-700 flex items-center gap-2">
+                    <FontAwesomeIcon icon={faSave} className="w-4 h-4 text-primary-600" />
+                    Save this information for faster check-out next time
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* Order Summary */}
+          <div className="lg:col-span-1">
+            <div className="bg-white/80 backdrop-blur-xl border border-gray-100 rounded-3xl shadow-soft p-6 sticky top-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <FontAwesomeIcon icon={faShoppingCart} className="text-primary-600 w-5 h-5" />
+                Order Summary
+              </h3>
+              
+              {/* Cart Items */}
+              <div className="space-y-4 mb-6">
+                {cart.map((e) => (
+                  <div key={e.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                    <img 
+                      src={e.image} 
+                      alt={e.title}
+                      className="w-12 h-12 object-contain rounded-lg bg-white p-1"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">
+                        {e.title.length > 20 ? e.title.slice(0, 20) + "..." : e.title}
+                      </p>
+                      <p className="text-xs text-gray-500">Qty: {e.quantity || 1}</p>
+                    </div>
+                    <p className="text-sm font-bold text-gray-900">
+                      ${e.price ? ((e.quantity || 1) * e.price).toFixed(2) : "0.00"}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+              
+              {/* Price Breakdown */}
+              <div className="space-y-4 mb-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">Subtotal:</span>
+                  <span className="font-semibold text-gray-900">${subtotal}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">Shipping:</span>
+                  <span className="font-semibold text-green-600">Free</span>
+                </div>
+                <div className="border-t border-gray-200 pt-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">Total:</span>
+                    <span className="text-2xl font-bold text-primary-600">${subtotal}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Payment Methods */}
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <FontAwesomeIcon icon={faLock} className="w-4 h-4 text-primary-600" />
+                  Payment Method
+                </h4>
+                <div className="space-y-3">
+                  <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+                    <input 
+                      type="radio" 
+                      name="payment" 
+                      value="bank" 
+                      checked={paymentMethod === "bank"}
+                      onChange={(e) => setPaymentMethod(e.target.value)}
+                      className="w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500"
+                    />
+                    <FontAwesomeIcon icon={faCreditCard} className="w-5 h-5 text-primary-600" />
+                    <span className="font-medium text-gray-900">Bank Transfer</span>
+                  </label>
+                  <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+                    <input 
+                      type="radio" 
+                      name="payment" 
+                      value="cash" 
+                      checked={paymentMethod === "cash"}
+                      onChange={(e) => setPaymentMethod(e.target.value)}
+                      className="w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500"
+                    />
+                    <FontAwesomeIcon icon={faMoneyBillWave} className="w-5 h-5 text-green-600" />
+                    <span className="font-medium text-gray-900">Cash on Delivery</span>
+                  </label>
+                </div>
+              </div>
+              
+              {/* Coupon Section */}
+              <div className="mb-6 p-4 bg-gray-50 rounded-2xl">
+                <div className="flex items-center gap-2 mb-3">
+                  <FontAwesomeIcon icon={faTag} className="text-secondary-600 w-4 h-4" />
+                  <span className="text-sm font-semibold text-gray-700">Coupon Code</span>
+                </div>
+                <div className="flex gap-2">
+                  <input 
+                    type="text" 
+                    placeholder="Enter coupon" 
+                    className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  />
+                  <button className="px-4 py-2 bg-secondary-600 text-white rounded-lg hover:bg-secondary-700 transition-colors duration-200">
+                    Apply
+                  </button>
+                </div>
+              </div>
+              
+              {/* Place Order Button */}
+              <button
+                onClick={handlePlaceOrder}
+                className="w-full py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold rounded-xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 shadow-soft hover:shadow-large hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <FontAwesomeIcon icon={faCheckCircle} className="w-5 h-5" />
+                Place Order
+              </button>
+            </div>
           </div>
-          <div className="checkout" style={{ marginTop: "50px" }}>
-            <p style={{ fontSize: "20px", fontWeight: "500" }}>Checkout</p>
-            <div className="sub d-flex align-items-center justify-content-between">
-              <p>Subtotal:</p>
-              <p>${subtotal}</p>
-            </div>
-            <div className="shipping d-flex align-items-center justify-content-between">
-              <p>Shipping:</p>
-              <p>Free</p>
-            </div>
-            <div className="total d-flex align-items-center justify-content-between">
-              <p>Total:</p>
-              <p>${subtotal}</p>
-            </div>
-          </div>
-          <div className="radios d-flex flex-column">
-            <div className="input1 d-flex align-items-center">
-              <input type="radio" id="option1" name="options" value="option1" />
-              <label htmlFor="option1" className="label">
-                Bank
-              </label>
-            </div>
-            <div className="input2 d-flex align-items-center">
-              <input type="radio" id="option2" name="options" value="option2" />
-              <label htmlFor="option2" className="label">
-                Cash on delivery
-              </label>
-            </div>
-          </div>
-          <div className="cabon">
-            <input type="text" placeholder="Coupon Code" />
-            <button>Apply Coupon</button>
-          </div>
-          <button className="placeOrder">Place Order</button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
