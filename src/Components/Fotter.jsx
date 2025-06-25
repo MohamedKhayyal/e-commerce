@@ -1,7 +1,13 @@
-import img1 from "./asset/qr-barcode-for-data-labeling-1257966228-0dcfa9a3fbad4721aa5717bf13953adf.jpg";
-import img2 from "./asset/preview_d605be53ac335ec29de57d357cb82436.jpg";
+import img1 from "../assets/qr-barcode-for-data-labeling-1257966228-0dcfa9a3fbad4721aa5717bf13953adf.jpg";
+import img2 from "../assets/preview_d605be53ac335ec29de57d357cb82436.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShare, faEnvelope, faPhone, faMapMarkerAlt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShare,
+  faEnvelope,
+  faPhone,
+  faMapMarkerAlt,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export default function Fotter() {
@@ -45,7 +51,10 @@ export default function Fotter() {
             <div className="space-y-4">
               <div className="flex items-start space-x-3 group">
                 <div className="flex-shrink-0 w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center group-hover:bg-primary-500/30 transition-colors">
-                  <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 text-primary-400" />
+                  <FontAwesomeIcon
+                    icon={faMapMarkerAlt}
+                    className="w-4 h-4 text-primary-400"
+                  />
                 </div>
                 <p className="text-sm text-gray-300 leading-relaxed">
                   111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.
@@ -53,13 +62,19 @@ export default function Fotter() {
               </div>
               <div className="flex items-center space-x-3 group">
                 <div className="flex-shrink-0 w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center group-hover:bg-primary-500/30 transition-colors">
-                  <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 text-primary-400" />
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="w-4 h-4 text-primary-400"
+                  />
                 </div>
                 <p className="text-sm text-gray-300">exclusive@gmail.com</p>
               </div>
               <div className="flex items-center space-x-3 group">
                 <div className="flex-shrink-0 w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center group-hover:bg-primary-500/30 transition-colors">
-                  <FontAwesomeIcon icon={faPhone} className="w-4 h-4 text-primary-400" />
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className="w-4 h-4 text-primary-400"
+                  />
                 </div>
                 <p className="text-sm text-gray-300">+88015-88888-9999</p>
               </div>
@@ -79,7 +94,10 @@ export default function Fotter() {
               >
                 <span className="flex items-center">
                   My Account
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  />
                 </span>
               </Link>
               <Link
@@ -88,7 +106,10 @@ export default function Fotter() {
               >
                 <span className="flex items-center">
                   Login / Register
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  />
                 </span>
               </Link>
               <Link
@@ -97,7 +118,10 @@ export default function Fotter() {
               >
                 <span className="flex items-center">
                   Cart
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  />
                 </span>
               </Link>
               <Link
@@ -106,7 +130,10 @@ export default function Fotter() {
               >
                 <span className="flex items-center">
                   Wishlist
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  />
                 </span>
               </Link>
               <Link
@@ -115,7 +142,10 @@ export default function Fotter() {
               >
                 <span className="flex items-center">
                   Shop
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  />
                 </span>
               </Link>
             </div>
@@ -143,7 +173,10 @@ export default function Fotter() {
               >
                 <span className="flex items-center">
                   Contact
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="ml-2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  />
                 </span>
               </Link>
             </div>
@@ -159,15 +192,15 @@ export default function Fotter() {
               Save $3 with App New User Only
             </p>
             <div className="space-y-4">
-              <img 
-                src={img1} 
-                alt="Google Play Store" 
-                className="h-12 cursor-pointer hover:opacity-80 transition-all duration-200 hover:scale-105" 
+              <img
+                src={img1}
+                alt="Google Play Store"
+                className="h-12 cursor-pointer hover:opacity-80 transition-all duration-200 hover:scale-105"
               />
-              <img 
-                src={img2} 
-                alt="App Store" 
-                className="h-12 cursor-pointer hover:opacity-80 transition-all duration-200 hover:scale-105" 
+              <img
+                src={img2}
+                alt="App Store"
+                className="h-12 cursor-pointer hover:opacity-80 transition-all duration-200 hover:scale-105"
               />
             </div>
           </div>
@@ -179,10 +212,13 @@ export default function Fotter() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between">
             <p className="text-center sm:text-left text-sm text-gray-400 mb-4 sm:mb-0">
-              &copy; Copyright Rimet {new Date().getFullYear()} All right reserved
+              &copy; Copyright Rimet {new Date().getFullYear()} All right
+              reserved
             </p>
             <div className="flex items-center space-x-6">
-              <span className="text-xs text-gray-500">Made with ❤️ for you</span>
+              <span className="text-xs text-gray-500">
+                Made with ❤️ for you
+              </span>
             </div>
           </div>
         </div>

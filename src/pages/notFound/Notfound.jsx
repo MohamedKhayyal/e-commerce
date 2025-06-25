@@ -27,26 +27,26 @@ export default function Notfound() {
         </nav>
 
         {/* Main Content */}
-        <div className="flex flex-col items-center justify-center py-20 text-center">
+        <div className="flex flex-col items-center justify-center py-10 sm:py-20 text-center">
           {/* 404 Icon */}
           <div className="relative mb-8">
-            <div className="w-32 h-32 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-large mb-6">
-              <FontAwesomeIcon icon={faExclamationTriangle} className="w-16 h-16 text-white" />
+            <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-large mb-6">
+              <FontAwesomeIcon icon={faExclamationTriangle} className="w-10 h-10 sm:w-16 sm:h-16 text-white" />
             </div>
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-bounce">
+            <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-6 h-6 sm:w-8 sm:h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-bounce">
               <span className="text-xs font-bold text-white">!</span>
             </div>
           </div>
 
           {/* Error Message */}
           <div className="max-w-2xl mx-auto">
-            <h1 className="text-6xl lg:text-8xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold text-gray-900 mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">404</span>
             </h1>
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
               Page Not Found
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
               Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
             </p>
           </div>

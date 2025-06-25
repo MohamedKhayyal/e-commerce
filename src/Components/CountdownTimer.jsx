@@ -40,7 +40,7 @@ export default function CountdownTimer({ targetDate }) {
                 {unit.label}
               </p>
               <p className="text-lg lg:text-xl font-bold">
-                {unit.value.toString().padStart(2, '0')}
+                {unit.value.toString().padStart(2, "0")}
               </p>
             </div>
           </div>

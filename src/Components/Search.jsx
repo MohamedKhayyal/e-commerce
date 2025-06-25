@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
-import { cartContext } from "../../Feautres/ContextProvider";
+import { cartContext } from "../Feautres/ContextProvider";
 import { Link } from "react-router-dom";
 
 export default function Search() {

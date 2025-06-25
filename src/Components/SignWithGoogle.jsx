@@ -1,8 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, db } from "./firebase"; // Import Firestore
+import { auth, db } from "../firebase/firebase"; // Import Firestore
 import { doc, setDoc, getDoc } from "firebase/firestore"; // Firestore functions
 import { useNavigate } from "react-router-dom";
-import img from "./assat/102593215-102593340.png";
 
 export default function SignWithGoogle() {
   const navigate = useNavigate();
@@ -40,15 +39,14 @@ export default function SignWithGoogle() {
   return (
     <div>
       <button
-        className="bg-white withEmail"
-        style={{
-          padding: "16px 80px",
-          borderRadius: "5px",
-        }}
+        type="button"
+        className="w-full mt-8 bg-gray-500/10 flex items-center justify-center h-12 rounded-full"
         onClick={googleLogin}
       >
-        <img src={img} style={{ width: "30px" }} alt="Google Logo" />
-        <span className="p-4">Sign up with Google</span>
+        <img
+          src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/login/googleLogo.svg"
+          alt="googleLogo"
+        />
       </button>
     </div>
   );

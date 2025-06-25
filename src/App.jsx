@@ -4,8 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Signin from "./pages/sign in/Signin";
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home";
-import Header from "./Components/Navigation/Header";
-import Fotter from "./Components/footer/Fotter";
+import Header from "./Components/Header";
+import Fotter from "./Components/Fotter";
 import Cart from "./pages/cart/Cart";
 import Shop from "./pages/shop/Shop";
 import Wishlist from "./pages/Wishlist/Wishlist";
@@ -15,9 +15,9 @@ import ProductDetails from "./pages/productDetails/ProductDetails";
 import MangeAccount from "./pages/mange account/MangeAccount";
 import Contact from "./pages/contact/Contact";
 import About from "./pages/About/About";
-import ProtectedRoute from "./Components/protect/ProtectedRoute";
-import AuthRoute from "./Components/protect/AuthRoute";
-import ScrollTop from "./Components/scrollTop/scrollTop";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import AuthRoute from "./Components/AuthRoute";
+import ScrollTop from "./Components/scrollTop";
 
 export default function App() {
   return (
@@ -72,7 +72,7 @@ export default function App() {
             <Route path="*" element={<Notfound />} />
           </Routes>
         </main>
-        <ToastContainer 
+        <ToastContainer
           position="top-right"
           autoClose={3000}
           hideProgressBar={false}

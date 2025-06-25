@@ -10,22 +10,26 @@ import {
   faUser,
   faMessage
 } from "@fortawesome/free-solid-svg-icons";
+import ContactFormFields from "../../Components/ContactFormFields";
+import { useState } from "react";
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+
   return (
-    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-white to-gray-50 min-h-screen overflow-hidden">
+    <section className="relative py-8 sm:py-16 lg:py-20 bg-gradient-to-br from-white to-gray-50 min-h-screen overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-primary-200/40 to-secondary-200/40 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary-200/30 to-primary-200/30 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-40 h-40 sm:w-80 sm:h-80 bg-gradient-to-br from-primary-200/40 to-secondary-200/40 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-secondary-200/30 to-primary-200/30 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 relative z-10">
         {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-12">
+        <nav className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 mb-6 sm:mb-12">
           <a href="/" className="flex items-center hover:text-primary-600 transition-colors duration-200">
-            <FontAwesomeIcon icon={faHome} className="w-4 h-4 mr-1" />
+            <FontAwesomeIcon icon={faHome} className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
             Home
           </a>
-          <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3" />
+          <FontAwesomeIcon icon={faChevronRight} className="w-2 h-2 sm:w-3 sm:h-3" />
           <span className="font-semibold text-gray-900">Contact</span>
         </nav>
 
@@ -118,55 +122,7 @@ export default function Contact() {
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Send us a Message</h2>
             
             <form className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <FontAwesomeIcon icon={faUser} className="w-4 h-4 mr-2 text-primary-600" />
-                    Your Name
-                  </label>
-                  <input 
-                    type="text" 
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 mr-2 text-primary-600" />
-                    Your Email
-                  </label>
-                  <input 
-                    type="email" 
-                    placeholder="Enter your email"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  <FontAwesomeIcon icon={faPhone} className="w-4 h-4 mr-2 text-primary-600" />
-                  Your Phone
-                </label>
-                <input 
-                  type="tel" 
-                  placeholder="Enter your phone number"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  <FontAwesomeIcon icon={faMessage} className="w-4 h-4 mr-2 text-primary-600" />
-                  Your Message
-                </label>
-                <textarea 
-                  placeholder="Tell us about your inquiry..."
-                  rows="6"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm resize-none"
-                ></textarea>
-              </div>
-              
+              <ContactFormFields form={form} setForm={setForm} />
               <button
                 type="submit"
                 className="w-full py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold rounded-xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 shadow-soft hover:shadow-large hover:scale-105 flex items-center justify-center gap-2"

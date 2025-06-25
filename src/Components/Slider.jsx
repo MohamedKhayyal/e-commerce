@@ -6,9 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import img1 from "./7215f42e5883a64157f0aa3a4d1a866a.jpeg";
-import img3 from "./0c1817d3afa266b3c9f8c81ff0ed4428.png";
-import img5 from "./2977438364a41d7e8c9d1e9a794d43ed.png";
+
+import img1 from "../assets/iphone.jpeg";
+import img3 from "../assets/playStation.png";
+import img5 from "../assets/speakers.png";
 
 export default function Slider() {
   const slides = [
@@ -33,7 +34,7 @@ export default function Slider() {
   ];
 
   return (
-    <div className="relative group">
+    <div className="w-full overflow-hidden lg:rounded-2xl lg:shadow-large">
       <Swiper
         spaceBetween={0}
         pagination={{
@@ -54,7 +55,7 @@ export default function Slider() {
           pauseOnMouseEnter: true,
         }}
         modules={[Pagination, Autoplay, Navigation]}
-        className="hero-slider rounded-2xl sm:rounded-3xl overflow-hidden shadow-large"
+        className="w-full"
         style={{
           "--swiper-pagination-color": "#0ea5e9",
           "--swiper-pagination-bullet-size": "12px",
@@ -64,35 +65,20 @@ export default function Slider() {
           "--swiper-navigation-size": "24px",
           "--swiper-navigation-color": "#ffffff",
         }}
-        breakpoints={{
-          320: {
-            pagination: {
-              bulletSize: 8,
-              spaceBetween: 6,
-            },
-          },
-          640: {
-            pagination: {
-              bulletSize: 10,
-              spaceBetween: 8,
-            },
-          },
-          1024: {
-            pagination: {
-              bulletSize: 12,
-              spaceBetween: 10,
-            },
-          },
-        }}
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px]">
+            <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-[400px] xl:h-[500px] bg-gray-200">
               <img
                 src={slide.img}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover max-w-full max-h-full"
                 loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src =
+                    "https://via.placeholder.com/400x200?text=Image+Not+Found";
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
 
@@ -124,7 +110,7 @@ export default function Slider() {
                 </div>
               </div>
 
-              {/* Floating Elements - Responsive */}
+              {/* Floating Elements */}
               <div className="absolute top-1/4 right-4 sm:right-8 lg:right-16 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 bg-white/10 backdrop-blur-sm rounded-full animate-bounce-gentle"></div>
               <div
                 className="absolute bottom-1/4 right-8 sm:right-12 lg:right-24 w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 xl:w-16 xl:h-16 bg-primary-500/20 backdrop-blur-sm rounded-full animate-bounce-gentle"
@@ -135,8 +121,11 @@ export default function Slider() {
         ))}
       </Swiper>
 
-      {/* Custom Navigation Buttons - Hidden on mobile, visible on larger screens */}
-      <button className="swiper-button-prev absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-soft hover:shadow-medium transition-all duration-200 flex items-center justify-center hover:bg-white/30 hover:scale-110 opacity-0 group-hover:opacity-100 sm:opacity-100">
+      {/* Navigation Buttons */}
+      <button
+        aria-label="Previous slide"
+        className="swiper-button-prev absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-soft hover:shadow-medium transition-all duration-200 flex items-center justify-center hover:bg-white/30 hover:scale-110 opacity-0 group-hover:opacity-100 sm:opacity-100"
+      >
         <svg
           className="w-4 h-4 sm:w-5 sm:h-5 text-white"
           fill="none"
@@ -152,7 +141,10 @@ export default function Slider() {
         </svg>
       </button>
 
-      <button className="swiper-button-next absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-soft hover:shadow-medium transition-all duration-200 flex items-center justify-center hover:bg-white/30 hover:scale-110 opacity-0 group-hover:opacity-100 sm:opacity-100">
+      <button
+        aria-label="Next slide"
+        className="swiper-button-next absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-soft hover:shadow-medium transition-all duration-200 flex items-center justify-center hover:bg-white/30 hover:scale-110 opacity-0 group-hover:opacity-100 sm:opacity-100"
+      >
         <svg
           className="w-4 h-4 sm:w-5 sm:h-5 text-white"
           fill="none"
@@ -168,7 +160,7 @@ export default function Slider() {
         </svg>
       </button>
 
-      {/* Mobile Touch Indicators */}
+      {/* Mobile Swipe Tip */}
       <div className="absolute bottom-4 left-4 sm:hidden">
         <div className="flex items-center space-x-2 text-white/70 text-xs">
           <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">

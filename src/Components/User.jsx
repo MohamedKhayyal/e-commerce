@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +11,7 @@ import {
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase/firebase";
 
 export default function User() {
   const navigate = useNavigate();
@@ -47,43 +47,57 @@ export default function User() {
 
   return (
     <div className="relative" ref={menuRef}>
-      <button 
-        onClick={toggleMenu} 
+      <button
+        onClick={toggleMenu}
         className="flex items-center space-x-2 p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
       >
         <FontAwesomeIcon icon={faCircleUser} className="w-5 h-5" />
-        <FontAwesomeIcon 
-          icon={faChevronDown} 
-          className={`w-3 h-3 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} 
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className={`w-3 h-3 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
         />
       </button>
-      
+
       {open && (
         <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-large border border-gray-200 z-50">
           <div className="py-2">
             {user && (
-              <Link 
-                to="/mange-account" 
+              <Link
+                to="/mange-account"
                 onClick={() => setOpen(false)}
                 className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
               >
-                <FontAwesomeIcon icon={faCircleUser} className="w-4 h-4 text-primary-600" />
+                <FontAwesomeIcon
+                  icon={faCircleUser}
+                  className="w-4 h-4 text-primary-600"
+                />
                 <span>Manage My Account</span>
               </Link>
             )}
-            
+
             <button className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-              <FontAwesomeIcon icon={faBoxOpen} className="w-4 h-4 text-accent-600" />
+              <FontAwesomeIcon
+                icon={faBoxOpen}
+                className="w-4 h-4 text-accent-600"
+              />
               <span>My Orders</span>
             </button>
-            
+
             <button className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-              <FontAwesomeIcon icon={faTimesCircle} className="w-4 h-4 text-red-600" />
+              <FontAwesomeIcon
+                icon={faTimesCircle}
+                className="w-4 h-4 text-red-600"
+              />
               <span>My Cancellations</span>
             </button>
-            
+
             <button className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-              <FontAwesomeIcon icon={faStar} className="w-4 h-4 text-yellow-500" />
+              <FontAwesomeIcon
+                icon={faStar}
+                className="w-4 h-4 text-yellow-500"
+              />
               <span>My Reviews</span>
             </button>
 
@@ -98,8 +112,8 @@ export default function User() {
                 <span>Logout</span>
               </button>
             ) : (
-              <Link 
-                to="/sign" 
+              <Link
+                to="/sign"
                 onClick={() => setOpen(false)}
                 className="flex items-center space-x-3 px-4 py-3 text-sm text-primary-600 hover:bg-primary-50 transition-colors"
               >

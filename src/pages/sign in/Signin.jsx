@@ -1,21 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
-import img1 from "./assat/a1c7dc5b68a42239311e510f54d8cd59.jpeg";
+import img1 from "../../assets/sigin.jpeg";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
-import SignWithGoogle from "../../firebase/SignWithGoogle";
+import SignWithGoogle from "../../Components/SignWithGoogle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  faUser, 
-  faEnvelope, 
-  faLock, 
-  faEye, 
-  faEyeSlash, 
+import {
+  faUser,
   faSpinner,
-  faArrowRight
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+import AuthFields from "../../Components/AuthFields";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -68,7 +65,7 @@ export default function Signin() {
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-primary-200/40 to-secondary-200/40 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary-200/30 to-primary-200/30 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
-      
+
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -77,9 +74,9 @@ export default function Signin() {
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                 <div className="relative bg-white rounded-3xl p-2 shadow-soft">
-                  <img 
-                    src={img1} 
-                    alt="Sign Up" 
+                  <img
+                    src={img1}
+                    alt="Sign Up"
                     className="w-full h-auto rounded-2xl object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -90,15 +87,23 @@ export default function Signin() {
             <div className="bg-white/80 backdrop-blur-xl border border-gray-100 rounded-3xl shadow-soft p-8 lg:p-12">
               <div className="text-center mb-8">
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                  Create an <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Account</span>
+                  Create an{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                    Account
+                  </span>
                 </h1>
-                <p className="text-gray-600">Enter your details to get started</p>
+                <p className="text-gray-600">
+                  Enter your details to get started
+                </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <FontAwesomeIcon icon={faUser} className="w-4 h-4 mr-2 text-primary-600" />
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-4 h-4 mr-2 text-primary-600"
+                    />
                     Full Name
                   </label>
                   <input
@@ -109,44 +114,14 @@ export default function Signin() {
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 mr-2 text-primary-600" />
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    required
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <FontAwesomeIcon icon={faLock} className="w-4 h-4 mr-2 text-primary-600" />
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Create a strong password"
-                      required
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white/60 backdrop-blur-sm"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                    >
-                      <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-
+                <AuthFields
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  showPassword={showPassword}
+                  setShowPassword={setShowPassword}
+                />
                 <button
                   type="submit"
                   disabled={loading}
@@ -154,13 +129,19 @@ export default function Signin() {
                 >
                   {loading ? (
                     <>
-                      <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 animate-spin" />
+                      <FontAwesomeIcon
+                        icon={faSpinner}
+                        className="w-4 h-4 animate-spin"
+                      />
                       Creating Account...
                     </>
                   ) : (
                     <>
                       Create Account
-                      <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
+                      <FontAwesomeIcon
+                        icon={faArrowRight}
+                        className="w-4 h-4"
+                      />
                     </>
                   )}
                 </button>
@@ -182,8 +163,8 @@ export default function Signin() {
               <div className="text-center">
                 <p className="text-sm text-gray-600">
                   Already have an account?{" "}
-                  <Link 
-                    to="/login" 
+                  <Link
+                    to="/login"
                     className="text-primary-600 hover:text-primary-700 font-semibold transition-colors duration-200"
                   >
                     Log in
