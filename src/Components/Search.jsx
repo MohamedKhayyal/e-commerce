@@ -1,4 +1,3 @@
-// import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState, useContext, useRef } from "react";
@@ -21,6 +20,7 @@ export default function Search() {
           axios.get("https://fakestoreapi.com/products"),
           axios.get("https://dummyjson.com/products"),
         ]);
+
         const fakeStoreProducts = fakeStoreRes.data.map((product) => ({
           id: `fake-${product.id}`,
           title: product.title,
@@ -49,9 +49,11 @@ export default function Search() {
   }, []);
 
   const filteredProducts = query
-    ? products.filter((product) =>
-        product.title.toLowerCase().includes(query.toLowerCase())
-      ).slice(0, 8) // Limit to 8 results for better UX
+    ? products
+        .filter((product) =>
+          product.title.toLowerCase().includes(query.toLowerCase())
+        )
+        .slice(0, 8)
     : [];
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export default function Search() {
   }, []);
 
   return (
-    <div className="relative w-full" ref={searchRef}>
+    <div className="relative w-full z-50" ref={searchRef}>
       <div className="relative">
         <input
           type="text"
@@ -76,14 +78,14 @@ export default function Search() {
           onChange={(e) => setQuery(e.target.value)}
           className="w-full pl-10 pr-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
         />
-        <FontAwesomeIcon 
-          icon={faMagnifyingGlass} 
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" 
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"
         />
       </div>
-      
+
       {query && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-large z-50 max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-[9999] max-h-96 overflow-y-auto">
           {isLoading ? (
             <div className="p-4 text-center text-gray-500">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600 mx-auto"></div>
@@ -92,23 +94,24 @@ export default function Search() {
           ) : filteredProducts.length > 0 ? (
             <div className="py-2">
               {filteredProducts.map((product) => (
-                <div 
-                  key={product.id} 
+                <div
+                  key={product.id}
                   className="flex items-center justify-between p-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
                 >
                   <div className="flex items-center space-x-3 flex-1 min-w-0">
-                    <Link 
+                    <Link
                       to={`/product-details/${product.id}`}
                       className="flex-shrink-0"
                     >
-                      <img 
-                        src={product.image} 
+                      <img
+                        loading="lazy"
+                        src={product.image}
                         alt={product.title}
-                        className="w-12 h-12 object-cover rounded-lg border border-gray-200" 
+                        className="w-12 h-12 object-cover rounded-lg border border-gray-200"
                       />
                     </Link>
                     <div className="flex-1 min-w-0">
-                      <Link 
+                      <Link
                         to={`/product-details/${product.id}`}
                         className="block text-sm font-medium text-gray-900 hover:text-primary-600 truncate"
                       >

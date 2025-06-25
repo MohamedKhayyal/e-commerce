@@ -164,7 +164,7 @@ export default function Header() {
 
         {/* Mobile Search */}
         {isSearchOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100 animate-slide-up bg-white/95 backdrop-blur-md">
+          <div className="md:hidden py-4 border-t border-gray-100 animate-slide-up bg-white/95 backdrop-blur-md relative z-[101]">
             <Search />
           </div>
         )}
