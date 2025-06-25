@@ -61,7 +61,7 @@ export default function User() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-large border border-gray-200 z-50">
+        <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-large border border-gray-200 z-[9999]">
           <div className="py-2">
             {user && (
               <Link
@@ -77,13 +77,17 @@ export default function User() {
               </Link>
             )}
 
-            <button className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+            <Link
+              to={"/checkout"}
+              onClick={() => setOpen(false)}
+              className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+            >
               <FontAwesomeIcon
                 icon={faBoxOpen}
                 className="w-4 h-4 text-accent-600"
               />
               <span>My Orders</span>
-            </button>
+            </Link>
 
             <button className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
               <FontAwesomeIcon
