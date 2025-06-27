@@ -61,7 +61,7 @@ export default function Product() {
               Flash Sales
             </h2>
             <div className="bg-white rounded-2xl px-6 py-3 shadow-soft border border-gray-100">
-              <CountdownTimer targetDate="2025-12-35T23:59:59" />
+              <CountdownTimer targetDate="2025-12-31T23:59:59" />
             </div>
           </div>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto rounded-full"></div>
