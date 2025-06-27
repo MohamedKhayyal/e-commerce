@@ -12,16 +12,14 @@ import { cartContext } from "../Feautres/ContextProvider";
 import { toast } from "react-toastify";
 import ProductCard from "./ProductCard";
 import SwiperNavButton from "./SwiperNavButton";
-import useFetchProducts from "./useFetchProducts";
+import useFetchFirestoreProducts from "./useFetchFirestoreProducts";
 
 export default function Product() {
   const { dispatch } = useContext(cartContext);
   const [setSwiperRef] = useState(null);
   const [stat, setStat] = useState({});
 
-  const { data, loading, error } = useFetchProducts(
-    "https://fakestoreapi.com/products"
-  );
+  const { data, loading, error } = useFetchFirestoreProducts();
   const product = data.slice(0, 7);
 
   const changeBG = (i) => {
@@ -63,7 +61,7 @@ export default function Product() {
               Flash Sales
             </h2>
             <div className="bg-white rounded-2xl px-6 py-3 shadow-soft border border-gray-100">
-              <CountdownTimer targetDate="2025-12-31T23:59:59" />
+              <CountdownTimer targetDate="2025-12-35T23:59:59" />
             </div>
           </div>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto rounded-full"></div>

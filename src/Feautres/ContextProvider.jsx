@@ -29,7 +29,6 @@ const storageKeys = {
 
 const saveToStorage = (key, data) => {
   if (!isLocalStorageAvailable()) {
-    console.warn("localStorage is not available");
     return false;
   }
 
@@ -37,14 +36,12 @@ const saveToStorage = (key, data) => {
     localStorage.setItem(key, JSON.stringify(data));
     return true;
   } catch (error) {
-    console.error(`Error saving ${key} to localStorage:`, error);
     return false;
   }
 };
 
 const loadFromStorage = (key, defaultValue = []) => {
   if (!isLocalStorageAvailable()) {
-    console.warn("localStorage is not available");
     return defaultValue;
   }
 
@@ -52,7 +49,6 @@ const loadFromStorage = (key, defaultValue = []) => {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : defaultValue;
   } catch (error) {
-    console.error(`Error loading ${key} from localStorage:`, error);
     return defaultValue;
   }
 };
@@ -60,17 +56,14 @@ const loadFromStorage = (key, defaultValue = []) => {
 // Utility function to clear all localStorage data
 export const clearAllStorage = () => {
   if (!isLocalStorageAvailable()) {
-    console.warn("localStorage is not available");
     return false;
   }
 
   try {
     localStorage.removeItem(storageKeys.cart);
     localStorage.removeItem(storageKeys.wishlist);
-    console.log("All localStorage data cleared");
     return true;
   } catch (error) {
-    console.error("Error clearing localStorage:", error);
     return false;
   }
 };
@@ -96,7 +89,6 @@ export const exportData = () => {
 
     return true;
   } catch (error) {
-    console.error("Error exporting data:", error);
     return false;
   }
 };
@@ -128,14 +120,6 @@ const loadInitialState = () => {
   const cart = loadFromStorage(storageKeys.cart, []);
   const wishlist = loadFromStorage(storageKeys.wishlist, []);
 
-  // Log loaded data for debugging
-  if (cart.length > 0 || wishlist.length > 0) {
-    console.log("Loaded from localStorage:", {
-      cart: cart.length,
-      wishlist: wishlist.length,
-    });
-  }
-
   return { cart, wishlist };
 };
 
@@ -149,24 +133,11 @@ export default function ContextProvider({ children }) {
     const success =
       saveToStorage(storageKeys.cart, state.cart) &&
       saveToStorage(storageKeys.wishlist, state.wishlist);
-
-    if (success) {
-      console.log("State saved to localStorage successfully");
-    }
-  }, [state.cart, state.wishlist]);
-
-  // Debug logging (remove in production)
-  useEffect(() => {
-    console.log("Cart updated:", state.cart);
-    console.log("Wishlist updated:", state.wishlist);
   }, [state.cart, state.wishlist]);
 
   // Enhanced dispatch with localStorage sync
   const enhancedDispatch = useCallback((action) => {
     dispatch(action);
-
-    // Additional logging for debugging
-    console.log("Action dispatched:", action.type, action);
   }, []);
 
   return (

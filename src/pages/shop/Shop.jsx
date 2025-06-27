@@ -2,41 +2,12 @@ import { useContext, useState } from "react";
 import { cartContext } from "../../Feautres/ContextProvider";
 import { toast } from "react-toastify";
 import ProductCard from "../../Components/ProductCard";
-import useFetchProducts from "../../Components/useFetchProducts";
+import useFetchFirestoreProducts from "../../Components/useFetchFirestoreProducts";
 import Pagination from "../../Components/Pagination";
 
 export default function Shop() {
   const { dispatch } = useContext(cartContext);
-  const {
-    data: fakeStoreData,
-    loading: loading1,
-    error: error1,
-  } = useFetchProducts("https://fakestoreapi.com/products");
-  const {
-    data: dummyJsonData,
-    loading: loading2,
-    error: error2,
-  } = useFetchProducts("https://dummyjson.com/products");
-
-  const fakeStoreProducts = fakeStoreData.map((item) => ({
-    id: `fake-${item.id}`,
-    title: item.title,
-    price: item.price,
-    image: item.image,
-    rating: item.rating?.rate,
-    stock: item.rating?.count,
-  }));
-
-  const dummyJsonProducts = (dummyJsonData.products || []).map((item) => ({
-    id: `dummy-${item.id}`,
-    title: item.title,
-    price: item.price,
-    image: item.thumbnail,
-    rating: item.rating,
-    stock: item.stock,
-  }));
-
-  const product = [...fakeStoreProducts, ...dummyJsonProducts];
+  const { data: product, loading, error } = useFetchFirestoreProducts();
   const [stat, setStat] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
@@ -72,7 +43,7 @@ export default function Shop() {
   const totalPages = Math.ceil(product.length / productsPerPage);
   const pageNumbers = [...Array(totalPages).keys()].map((num) => num + 1);
 
-  if (loading1 || loading2) {
+  if (loading) {
     return (
       <section className="relative py-16 lg:py-20 bg-gradient-to-br from-white to-gray-50 min-h-[60vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,7 +55,7 @@ export default function Shop() {
     );
   }
 
-  if (error1 || error2) {
+  if (error) {
     return (
       <section className="relative py-16 lg:py-20 bg-gradient-to-br from-white to-gray-50 min-h-[60vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

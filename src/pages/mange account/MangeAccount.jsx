@@ -89,7 +89,6 @@ export default function MangeAccount() {
         confirmNewPassword: "",
       }));
     } catch (error) {
-      console.error("Error updating password:", error);
       toast.error("Failed to update password. Check your current password.");
     }
   };

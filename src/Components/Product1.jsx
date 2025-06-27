@@ -5,13 +5,11 @@ import { useContext, useState } from "react";
 import { cartContext } from "../Feautres/ContextProvider";
 import img2 from "../assets/audio.png";
 import ProductCard from "./ProductCard";
-import useFetchProducts from "./useFetchProducts";
+import useFetchFirestoreProducts from "./useFetchFirestoreProducts";
 
 export default function Product1() {
   const { dispatch } = useContext(cartContext);
-  const { data, loading, error } = useFetchProducts(
-    "https://fakestoreapi.com/products"
-  );
+  const { data, loading, error } = useFetchFirestoreProducts();
   const product1 = data.slice(8, 12);
   const [stat, setStat] = useState({});
   const changeBG = (i) => {

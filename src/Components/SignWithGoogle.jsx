@@ -32,7 +32,7 @@ export default function SignWithGoogle() {
         navigate("/home");
       }
     } catch (error) {
-      console.error("Google Sign-In Error:", error);
+      // Remove all console.error statements
     }
   }
 

@@ -6,15 +6,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ProductCard from "./ProductCard";
 import SwiperNavButton from "./SwiperNavButton";
-import useFetchProducts from "./useFetchProducts";
+import useFetchFirestoreProducts from "./useFetchFirestoreProducts";
 import { cartContext } from "../Feautres/ContextProvider";
 
 export default function RelatedThem() {
   const { dispatch } = useContext(cartContext);
   const [stat, setStat] = useState({});
-  const { data, loading, error } = useFetchProducts(
-    "https://fakestoreapi.com/products"
-  );
+  const { data, loading, error } = useFetchFirestoreProducts();
   const products = useMemo(() => {
     if (data.length > 0) {
       return [...data].sort(() => Math.random() - 0.5).slice(0, 7);

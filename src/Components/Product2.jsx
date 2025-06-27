@@ -4,13 +4,11 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import { cartContext } from "../Feautres/ContextProvider";
 import ProductCard from "./ProductCard";
-import useFetchProducts from "./useFetchProducts";
+import useFetchFirestoreProducts from "./useFetchFirestoreProducts";
 
 export default function Product2() {
   const { dispatch } = useContext(cartContext);
-  const { data, loading, error } = useFetchProducts(
-    "https://fakestoreapi.com/products"
-  );
+  const { data, loading, error } = useFetchFirestoreProducts();
   const product2 = data.slice(12, 20);
   const [stat, setStat] = useState({});
   const changeBG = (i) => {

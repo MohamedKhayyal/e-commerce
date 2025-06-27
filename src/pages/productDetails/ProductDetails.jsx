@@ -59,7 +59,7 @@ export default function ProductDetails() {
           });
         }
       } catch (error) {
-        console.error("Error fetching product:", error);
+        // Remove all console.error statements
       }
     };
 
