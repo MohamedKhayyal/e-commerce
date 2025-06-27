@@ -56,7 +56,7 @@ export default function ProductCard({
         <h3 className="text-sm font-medium text-gray-900 mb-3 line-clamp-2 leading-relaxed">
           {item.title}
         </h3>
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-3 flex-wrap">
           <div className="flex items-center space-x-2">
             <p className="text-lg font-bold text-gray-900">
               ${(item.price * 0.8).toFixed(2)}

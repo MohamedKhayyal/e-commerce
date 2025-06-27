@@ -5,6 +5,7 @@ import {
   faXmark,
   faSearch,
   faBars,
+  faGaugeHigh,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -12,7 +13,8 @@ import { cartContext } from "../Feautres/ContextProvider";
 import Search from "./Search";
 import User from "./User";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Header() {
   const [user] = useAuthState(auth);
@@ -20,6 +22,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
@@ -43,8 +46,25 @@ export default function Header() {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
+
+  // Check admin status
+  useEffect(() => {
+    const checkAdmin = async () => {
+      if (!user) return setIsAdmin(false);
+      try {
+        const ref = doc(db, "admins", user.uid);
+        const snap = await getDoc(ref);
+        setIsAdmin(snap.exists() && snap.data().role === "admin");
+      } catch {
+        setIsAdmin(false);
+      }
+    };
+    checkAdmin();
+  }, [user]);
 
   // Prevent background scroll when menu is open
   useEffect(() => {
@@ -103,6 +123,21 @@ export default function Header() {
                 {route.charAt(0).toUpperCase() + route.slice(1)}
               </NavLink>
             ))}
+            {isAdmin && (
+              <NavLink
+                to="/admin"
+                className={({ isActive }) =>
+                  `flex items-center gap-2 text-base font-semibold px-4 py-2 rounded-lg shadow-sm transition-all duration-200 ${
+                    isActive
+                      ? "bg-gradient-to-r from-primary-600 to-secondary-600 text-white"
+                      : "bg-primary-50 text-primary-700 hover:bg-primary-600 hover:text-white"
+                  }`
+                }
+              >
+                <FontAwesomeIcon icon={faGaugeHigh} className="w-5 h-5" />
+                Dashboard
+              </NavLink>
+            )}
             {!user && (
               <NavLink
                 to="/sign"
@@ -171,7 +206,7 @@ export default function Header() {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="fixed inset-0 z-[100] lg:hidden">
+          <div className="fixed inset-0 z-[9999] lg:hidden">
             {/* Overlay */}
             <div
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
@@ -211,6 +246,22 @@ export default function Header() {
                     {route.charAt(0).toUpperCase() + route.slice(1)}
                   </NavLink>
                 ))}
+                {isAdmin && (
+                  <NavLink
+                    to="/admin"
+                    onClick={() => setIsOpen(false)}
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 block py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 ${
+                        isActive
+                          ? "bg-gradient-to-r from-primary-600 to-secondary-600 text-white"
+                          : "bg-primary-50 text-primary-700 hover:bg-primary-600 hover:text-white"
+                      }`
+                    }
+                  >
+                    <FontAwesomeIcon icon={faGaugeHigh} className="w-5 h-5" />
+                    Dashboard
+                  </NavLink>
+                )}
                 {!user && (
                   <NavLink
                     to="/sign"

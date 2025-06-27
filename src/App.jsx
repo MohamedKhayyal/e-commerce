@@ -19,6 +19,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import AuthRoute from "./Components/AuthRoute";
 import ScrollTop from "./Components/scrollTop";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminRoute from "./Components/AdminRoute";
 
 export default function App() {
   return (
@@ -46,9 +47,9 @@ export default function App() {
             <Route
               path="admin"
               element={
-                <ProtectedRoute>
+                <AdminRoute>
                   <AdminDashboard />
-                </ProtectedRoute>
+                </AdminRoute>
               }
             />
             <Route
